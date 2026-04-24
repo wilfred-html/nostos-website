@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nostos — A return home | Authentic Greek dining in Hout Bay</title>
+  <meta name="description" content="Authentic Greek restaurant in Hout Bay. Inspired by memory, roots, and coastal hospitality. Book at Nostos through Dineplan." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f3eee6;
+      --paper: #fbf7f1;
+      --ink: #1f1d1a;
+      --muted: #61584d;
+      --line: rgba(31, 29, 26, 0.12);
+      --olive: #6f7b56;
+      --olive-deep: #556044;
+      --terracotta: #b66843;
+      --sand: #d9c3a3;
+      --white: #ffffff;
+      --shadow: 0 20px 60px rgba(31, 29, 26, 0.10);
+      --radius: 20px;
+      --max: 1200px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--olive-deep);
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.5;
+    }
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', serif;
+      margin: 0;
+      line-height: 1.02;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+    h1 { font-size: clamp(3.3rem, 8vw, 6.7rem); }
+    h2 { font-size: clamp(2.3rem, 5vw, 4rem); }
+    h3 { font-size: 1.7rem; }
+    p { margin: 0; color: var(--muted); }
+    .btn-row { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 15px;
+      border: 1px solid transparent;
+      transition: 0.2s ease;
+    }
+    .btn.primary { background: var(--ink); color: var(--white); }
+    .btn.primary:hover { background: #000; transform: translateY(-1px); }
+    .btn.secondary { border-color: var(--line); background: rgba(255,255,255,0.55); }
+    .btn.secondary:hover { border-color: var(--olive); color: var(--olive-deep); }
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(243, 238, 230, 0.85);
+      border-bottom: 1px solid var(--line);
+    }
+    .site-nav .container {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    .brand img {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--line);
+      background: var(--paper);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .hero {
+      padding: 48px 0 56px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 32px;
+      align-items: stretch;
+    }
+    .hero-copy, .booking-card {
+      border-radius: 28px;
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid rgba(31,29,26,0.08);
+      box-shadow: var(--shadow);
+    }
+    .hero-copy {
+      position: relative;
+      min-height: 760px;
+      display: flex;
+      align-items: flex-end;
+      background:
+        linear-gradient(180deg, rgba(31,29,26,0.08) 0%, rgba(31,29,26,0.55) 55%, rgba(31,29,26,0.82) 100%),
+        url('./public/images/nostos-logo.jpg') center/cover no-repeat,
+        linear-gradient(135deg, #c8b396, #9f866e);
+    }
+    .hero-copy-inner {
+      padding: 48px;
+      width: 100%;
+      color: var(--white);
+    }
+    .hero-copy p, .hero-copy .eyebrow { color: rgba(255,255,255,0.92); }
+    .hero-copy .eyebrow::before { background: rgba(255,255,255,0.7); }
+    .hero-copy .lead {
+      font-size: 18px;
+      max-width: 620px;
+      margin: 18px 0 28px;
+      color: rgba(255,255,255,0.88);
+    }
+    .hero-notes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 30px;
+    }
+    .hero-note {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.16);
+      backdrop-filter: blur(4px);
+    }
+    .hero-note strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+    .hero-note span {
+      font-size: 13px;
+      color: rgba(255,255,255,0.76);
+    }
+    .booking-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 760px;
+    }
+    .booking-top {
+      padding: 34px 34px 24px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(111,123,86,0.10), rgba(111,123,86,0));
+    }
+    .booking-top h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 10px;
+    }
+    .booking-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(111,123,86,0.10);
+      color: var(--olive-deep);
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .calendar-shell {
+      padding: 0;
+      flex: 1;
+      min-height: 520px;
+      background: var(--white);
+    }
+    .calendar-shell iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 520px;
+      border: 0;
+      background: var(--white);
+    }
+    .section-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    .story-card, .info-card, .menu-card, .visit-card, .quote-card {
+      background: var(--paper);
+      border: 1px solid rgba(31,29,26,0.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .story-card, .quote-card, .visit-card { padding: 34px; }
+    .info-card, .menu-card { padding: 0; overflow: hidden; }
+    .story-card p + p { margin-top: 16px; }
+    .quote-card {
+      background: var(--ink);
+      color: var(--white);
+    }
+    .quote-card p { color: rgba(255,255,255,0.76); }
+    .quote-card blockquote {
+      margin: 0 0 20px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      line-height: 1.15;
+    }
+    .split-image {
+      min-height: 340px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.25)),
+        url('./public/images/nostos-logo.jpg') center/cover no-repeat,
+        #d1b28f;
+    }
+    .info-card-body, .menu-card-body { padding: 30px; }
+    .facts {
+      display: grid;
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .fact {
+      display: flex;
+      gap: 14px;
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+    }
+    .fact:first-child { border-top: 0; padding-top: 0; }
+    .fact-index {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(182,104,67,0.12);
+      color: var(--terracotta);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .fact strong {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--ink);
+      font-size: 15px;
+    }
+    .dish-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .dish {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .dish:last-child { border-bottom: 0; padding-bottom: 0; }
+    .dish span:last-child { color: var(--muted); }
+    .visit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 24px;
+    }
+    .visit-item {
+      padding: 18px;
+      border-radius: 16px;
+      background: rgba(111,123,86,0.08);
+      border: 1px solid rgba(111,123,86,0.12);
+    }
+    .visit-item strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+    footer {
+      padding: 36px 0 54px;
+      color: var(--muted);
+    }
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    @media (max-width: 1024px) {
+      .hero-grid, .section-grid { grid-template-columns: 1fr; }
+      .hero-copy, .booking-card { min-height: auto; }
+      .calendar-shell iframe { min-height: 620px; }
+    }
+    @media (max-width: 720px) {
+      .site-nav .container { padding-top: 14px; padding-bottom: 14px; align-items: flex-start; }
+      .nav-links { gap: 12px; font-size: 13px; }
+      .hero-copy-inner, .booking-top, .story-card, .quote-card, .visit-card, .info-card-body, .menu-card-body { padding: 24px; }
+      .hero-notes, .visit-grid { grid-template-columns: 1fr; }
+      .calendar-shell iframe { min-height: 540px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="container">
+      <a class="brand" href="#top">
+        <img src="./public/images/nostos-logo.jpg" alt="Nostos logo" />
+        <span>Nostos • Hout Bay</span>
+      </a>
+      <div class="nav-links">
+        <a href="#story">Story</a>
+        <a href="#menu">Experience</a>
+        <a href="#visit">Visit</a>
+        <a href="#book">Bookings</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="hero-copy-inner">
+              <div class="eyebrow">A return home</div>
+              <h1>Nostos</h1>
+              <p class="lead">Authentic Greek dining in Hout Bay — rooted in memory, made by hand, and designed to feel like a long table shared with family.</p>
+              <div class="btn-row">
+                <a class="btn primary" href="#book">Book a table</a>
+                <a class="btn secondary" href="#story">Discover the story</a>
+              </div>
+              <div class="hero-notes">
+                <div class="hero-note">
+                  <strong>Greek at heart</strong>
+                  <span>Run by two authentic Greeks, with food inspired by memory and roots.</span>
+                </div>
+                <div class="hero-note">
+                  <strong>Hout Bay warmth</strong>
+                  <span>Coastal, intimate, and grounded in the rhythm of the bay.</span>
+                </div>
+                <div class="hero-note">
+                  <strong>BYO for now</strong>
+                  <span>No liquor licence yet — guests are welcome to bring their own wine at no corkage.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="booking-card" id="book">
+            <div class="booking-top">
+              <div class="eyebrow">Dining calendar</div>
+              <h2>Reserve through Dineplan</h2>
+              <p>Make bookings directly through Nostos’ live Dineplan calendar. Designed to keep reservations front and centre from the first scroll.</p>
+              <div class="booking-meta">
+                <span class="pill">Hout Bay</span>
+                <span class="pill">Authentic Greek</span>
+                <span class="pill">No corkage</span>
+              </div>
+            </div>
+            <div class="calendar-shell">
+              <iframe src="https://www.dineplan.com/restaurants/nostos" title="Book a table at Nostos"></iframe>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="story">
+      <div class="container">
+        <div class="section-grid">
+          <div class="story-card">
+            <div class="eyebrow">Brand story</div>
+            <h2>Food inspired by memory</h2>
+            <p>Nostos comes from the Greek idea of returning home. That theme already sits at the centre of how they describe themselves: every plate, every flavour, every detail is tied to memory, craft, and roots.</p>
+            <p>The strongest public signals we could recover point to a restaurant that isn’t trying to be loud or trendy. It feels intimate, personal, and proudly Greek — the kind of place where hospitality matters as much as the menu.</p>
+            <p>That’s the direction of this site: less “flashy restaurant marketing”, more soulful coastal dining room with a strong sense of origin.</p>
+          </div>
+          <div class="quote-card">
+            <div class="eyebrow">Recovered brand language</div>
+            <blockquote>“Our food is inspired by memory: every plate, every flavour, has a purpose and a story.”</blockquote>
+            <p>Other confirmed cues from public sources: “A return home”, “Authentic Greek restaurant in Hout Bay”, and “Run by two Authentic Greeks”. Those lines shaped the tone, palette, and structure of this first version.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="menu">
+      <div class="container">
+        <div class="section-grid">
+          <div class="info-card">
+            <div class="split-image"></div>
+            <div class="info-card-body">
+              <div class="eyebrow">Aesthetic direction</div>
+              <h2>Warm, coastal, understated</h2>
+              <p>This concept leans into sun-faded stone, olive tones, terracotta warmth, and editorial typography — a digital atmosphere that feels closer to a Greek lunch unfolding slowly in Hout Bay than a generic booking page.</p>
+              <div class="facts">
+                <div class="fact">
+                  <div class="fact-index">01</div>
+                  <div>
+                    <strong>Editorial, not corporate</strong>
+                    <span>Soft serif headlines and quiet spacing to let the brand breathe.</span>
+                  </div>
+                </div>
+                <div class="fact">
+                  <div class="fact-index">02</div>
+                  <div>
+                    <strong>Booking-first UX</strong>
+                    <span>The hero prioritises reservations because Dineplan is already the live conversion path.</span>
+                  </div>
+                </div>
+                <div class="fact">
+                  <div class="fact-index">03</div>
+                  <div>
+                    <strong>True to the story</strong>
+                    <span>Rooted in “homecoming”, Greek identity, and the emotional side of dining.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card">
+            <div class="split-image" style="background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.2)), url('./public/images/nostos-logo.jpg') center/contain no-repeat, #eadcca;"></div>
+            <div class="menu-card-body">
+              <div class="eyebrow">Experience cues</div>
+              <h2>What the site should signal</h2>
+              <p>Until we complete a deeper image scrape, this v1 is built around the clearest truths we can verify now.</p>
+              <div class="dish-list">
+                <div class="dish"><span><strong>Authentic Greek cooking</strong><br><small>Traditional identity over trend-chasing</small></span><span>Core</span></div>
+                <div class="dish"><span><strong>Memory & story</strong><br><small>Food framed emotionally, not just functionally</small></span><span>Core</span></div>
+                <div class="dish"><span><strong>Hout Bay setting</strong><br><small>Coastal neighbourhood warmth and destination feel</small></span><span>Core</span></div>
+                <div class="dish"><span><strong>Simple reservations</strong><br><small>Dineplan stays the operational booking engine</small></span><span>Core</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="visit">
+      <div class="container">
+        <div class="visit-card">
+          <div class="eyebrow">Visit Nostos</div>
+          <h2>Built for guests first</h2>
+          <p>This first pass is designed to get them from curiosity to confidence quickly: understand the feeling, understand the place, then book.</p>
+          <div class="visit-grid">
+            <div class="visit-item">
+              <strong>Reservations</strong>
+              <span>Handled through Dineplan, embedded directly into the site flow.</span>
+            </div>
+            <div class="visit-item">
+              <strong>Drinks</strong>
+              <span>No liquor licence yet. Guests may bring their own alcohol without corkage.</span>
+            </div>
+            <div class="visit-item">
+              <strong>Location</strong>
+              <span>Hout Bay, Cape Town — framed as a neighbourhood restaurant with destination energy.</span>
+            </div>
+            <div class="visit-item">
+              <strong>Next refinement</strong>
+              <span>Add real restaurant photography, menu detail, and a fuller social proof layer.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-row">
+        <div>
+          <strong>Nostos</strong><br />
+          <span>A return home — Greek dining in Hout Bay.</span>
+        </div>
+        <div class="btn-row">
+          <a class="btn secondary" href="https://www.facebook.com/nostos.ct/" target="_blank" rel="noreferrer">Facebook</a>
+          <a class="btn secondary" href="https://www.instagram.com/nostos_cpt/" target="_blank" rel="noreferrer">Instagram</a>
+          <a class="btn primary" href="#book">Book now</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
