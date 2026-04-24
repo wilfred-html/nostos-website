@@ -3,693 +3,1380 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nostos — Authentic Greek dining in Hout Bay</title>
-  <meta name="description" content="Nostos is an authentic Greek restaurant in Hout Bay. Food inspired by memory, roots, and craft — with easy reservations through Dineplan." />
+  <title>Nostos — Authentic Greek dining, Hout Bay</title>
+  <meta name="description" content="Nostos. A Greek restaurant in Hout Bay — food inspired by memory, roots and craft. Reserve a table in under a minute." />
+  <meta name="theme-color" content="#f4ede4" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,25..100,0..1;1,9..144,300..900,25..100,0..1&family=GFS+Didot&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap" rel="stylesheet">
+
   <style>
+    /* ------------------------------------------------------------------ */
+    /*  Nostos — Aegean editorial                                          */
+    /*  Palette preserved from the previous build, deployed more boldly.   */
+    /* ------------------------------------------------------------------ */
     :root {
-      --bg: #f4ede4;
-      --surface: #fbf7f1;
-      --surface-2: #f0e5d7;
-      --ink: #181412;
-      --muted: #655a51;
-      --line: rgba(24, 20, 18, 0.1);
-      --olive: #6f7652;
-      --olive-deep: #4d5737;
-      --terracotta: #b96f4c;
-      --sand: #d7c1a3;
-      --white: #ffffff;
-      --shadow: 0 20px 60px rgba(24, 20, 18, 0.1);
-      --radius-xl: 30px;
-      --radius-lg: 22px;
-      --radius-md: 16px;
-      --max: 1200px;
+      --paper:        #f4ede4;
+      --paper-deep:   #ecdfc9;
+      --cream:        #fbf7f1;
+      --sand:         #f0e5d7;
+      --sand-deep:    #d7c1a3;
+      --ink:          #181412;
+      --ink-soft:     #2a2320;
+      --muted:        #6c5f53;
+      --olive:        #6f7652;
+      --olive-deep:   #4d5737;
+      --olive-night:  #2f361f;
+      --terracotta:   #b96f4c;
+      --terracotta-d: #8d4f35;
+      --line:         rgba(24,20,18,0.14);
+      --line-soft:    rgba(24,20,18,0.08);
+
+      --max: 1320px;
+      --edge: clamp(18px, 4vw, 52px);
+
+      --serif-display: 'Fraunces', 'GFS Didot', 'Cormorant Garamond', serif;
+      --serif-greek:   'GFS Didot', 'Fraunces', serif;
+      --serif-body:    'Newsreader', 'Fraunces', 'Georgia', serif;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    ::selection { background: var(--terracotta); color: var(--cream); }
+
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
+      font-family: var(--serif-body);
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 1.62;
       color: var(--ink);
-      background: linear-gradient(180deg, #f8f3ec 0%, var(--bg) 100%);
-      line-height: 1.6;
+      background: var(--paper);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* Paper grain — fixed, full-screen overlay, mixed on top */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -4%;
+      pointer-events: none;
+      z-index: 9998;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.094 0 0 0 0 0.078 0 0 0 0 0.070 0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      opacity: 0.32;
+      mix-blend-mode: multiply;
+    }
+
+    /* Sun-wash — slow tinted vignette */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9997;
+      background:
+        radial-gradient(70% 45% at 82% 4%, rgba(215,193,163,0.55) 0%, transparent 62%),
+        radial-gradient(60% 35% at 6% 96%, rgba(111,118,82,0.22) 0%, transparent 65%);
+      mix-blend-mode: multiply;
     }
 
     img { display: block; max-width: 100%; }
     a { color: inherit; text-decoration: none; }
-    .container { width: min(100% - 40px, var(--max)); margin: 0 auto; }
-    .section { padding: 96px 0; }
+    button { font: inherit; color: inherit; }
 
-    h1, h2, h3 {
-      margin: 0;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 600;
-      line-height: 0.95;
-      letter-spacing: -0.03em;
+    .shell {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding-left: var(--edge);
+      padding-right: var(--edge);
     }
 
-    h1 { font-size: clamp(3.8rem, 8vw, 7rem); }
-    h2 { font-size: clamp(2.4rem, 5vw, 4.4rem); }
-    h3 { font-size: clamp(1.5rem, 2.2vw, 2rem); }
-    p { margin: 0; color: var(--muted); }
+    /* ------------------------------------------------------------------ */
+    /*  Typography                                                         */
+    /* ------------------------------------------------------------------ */
+    .display {
+      font-family: var(--serif-display);
+      font-weight: 400;
+      font-variation-settings: "SOFT" 70, "WONK" 1, "opsz" 144;
+      letter-spacing: -0.035em;
+      line-height: 0.92;
+    }
+    .greek { font-family: var(--serif-greek); letter-spacing: -0.01em; }
+
+    h1, h2, h3, h4 { margin: 0; font-family: var(--serif-display); font-weight: 400; letter-spacing: -0.025em; line-height: 0.98; }
+    h1 { font-size: clamp(3rem, 6.2vw, 5.8rem); }
+    h2 { font-size: clamp(2.4rem, 4.8vw, 4rem); }
+    h3 { font-size: clamp(1.5rem, 2.2vw, 2rem); line-height: 1.08; }
+
+    p { margin: 0; color: var(--ink-soft); }
+    p.lead { font-size: clamp(1.08rem, 1.3vw, 1.22rem); line-height: 1.72; max-width: 58ch; color: var(--ink-soft); }
+
+    .italic { font-style: italic; }
+    .caps { font-family: var(--serif-body); text-transform: uppercase; letter-spacing: 0.22em; font-size: 11px; font-weight: 600; }
+
+    .folio {
+      font-family: var(--serif-greek);
+      font-size: clamp(4rem, 10vw, 9rem);
+      line-height: 0.85;
+      color: var(--terracotta);
+      font-style: italic;
+    }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
+      gap: 12px;
       text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      font-weight: 600;
       color: var(--olive-deep);
     }
     .eyebrow::before {
       content: "";
-      width: 34px;
+      width: 28px;
       height: 1px;
       background: currentColor;
-      opacity: 0.5;
+      opacity: 0.55;
+    }
+    .eyebrow.center { justify-content: center; }
+    .eyebrow.center::after {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.55;
     }
 
-    .lead {
-      font-size: clamp(1.05rem, 1.6vw, 1.2rem);
-      line-height: 1.85;
-      max-width: 62ch;
+    /* Ornamental rule */
+    .rule {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--olive-deep);
+      font-size: 12px;
+    }
+    .rule::before, .rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.3;
     }
 
-    .btn-row { display: flex; flex-wrap: wrap; gap: 14px; }
-    .btn {
+    /* ------------------------------------------------------------------ */
+    /*  Nav                                                                */
+    /* ------------------------------------------------------------------ */
+    .nav {
+      position: sticky; top: 0;
+      z-index: 40;
+      background: rgba(244, 237, 228, 0.82);
+      backdrop-filter: blur(14px) saturate(1.05);
+      -webkit-backdrop-filter: blur(14px) saturate(1.05);
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .nav .shell {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 18px; padding-bottom: 18px;
+      gap: 24px;
+    }
+    .wordmark {
+      display: flex; align-items: baseline; gap: 10px;
+      font-family: var(--serif-display);
+      letter-spacing: -0.02em;
+    }
+    .wordmark .mark {
+      font-size: 26px;
+      font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+      font-style: italic;
+    }
+    .wordmark .mark-small {
+      font-family: var(--serif-greek);
+      font-size: 18px;
+      color: var(--terracotta);
+      transform: translateY(-1px);
+    }
+    .nav-links {
+      display: flex; gap: clamp(18px, 2.6vw, 36px);
+      font-family: var(--serif-body);
+      font-size: 14px;
+      color: var(--ink-soft);
+    }
+    .nav-links a {
+      position: relative;
+      padding: 4px 0;
+      transition: color .25s ease;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute; left: 0; bottom: 0;
+      height: 1px; width: 0;
+      background: var(--terracotta);
+      transition: width .35s ease;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 16px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      font-family: var(--serif-body);
+      letter-spacing: 0.04em;
+      transition: background .3s ease, color .3s ease, transform .3s ease;
+    }
+    .nav-cta:hover { background: var(--ink); color: var(--cream); transform: translateY(-1px); }
+    .nav-cta .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--terracotta); box-shadow: 0 0 0 3px rgba(185,111,76,0.18); }
+
+    /* ------------------------------------------------------------------ */
+    /*  Hero                                                               */
+    /* ------------------------------------------------------------------ */
+    .hero { position: relative; padding: clamp(48px, 9vw, 110px) 0 clamp(40px, 6vw, 60px); }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 420px);
+      gap: clamp(36px, 5vw, 80px);
+      align-items: start;
+    }
+    .hero-left { position: relative; min-width: 0; }
+
+    .hero-meta {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 18px;
+      margin-bottom: 28px;
+      color: var(--olive-deep);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .hero-meta span { display: inline-flex; align-items: center; gap: 10px; }
+    .hero-meta .dash { width: 18px; height: 1px; background: currentColor; opacity: .5; }
+    .hero-meta b { font-weight: 600; color: var(--ink); letter-spacing: 0.14em; }
+
+    .display-stack {
+      position: relative;
+      padding-top: 4px;
+    }
+    .display-greek {
+      font-family: var(--serif-greek);
+      font-size: clamp(5rem, 14vw, 13rem);
+      line-height: 0.84;
+      letter-spacing: -0.035em;
+      color: var(--ink);
+      position: relative;
+      z-index: 2;
+      white-space: nowrap;
+    }
+    .display-greek em {
+      font-style: italic;
+      color: var(--terracotta);
+      font-family: var(--serif-greek);
+    }
+    .display-latin {
+      font-family: var(--serif-display);
+      font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(1.8rem, 4.6vw, 4rem);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      color: transparent;
+      -webkit-text-stroke: 1.4px var(--olive-deep);
+      margin-top: -0.28em;
+      margin-left: 0.35em;
+      z-index: 1;
+      position: relative;
+    }
+    .display-phon {
+      display: inline-flex; align-items: center; gap: 12px;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 14px;
+      font-family: var(--serif-body);
+    }
+    .display-phon .pipe { width: 1px; height: 14px; background: currentColor; opacity: .4; }
+    .display-phon i { font-style: italic; color: var(--ink-soft); }
+
+    .hero-tagline {
+      margin-top: clamp(28px, 3.5vw, 44px);
+      max-width: 42ch;
+      font-family: var(--serif-display);
+      font-weight: 400;
+      font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .hero-tagline em { font-style: italic; color: var(--terracotta-d); }
+
+    .hero-sub {
+      margin-top: 22px;
+      max-width: 46ch;
+      color: var(--ink-soft);
+      font-size: 16px;
+      line-height: 1.72;
+    }
+
+    /* Kinetic ticker */
+    .ticker {
+      margin-top: clamp(36px, 4vw, 56px);
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+      position: relative;
+      mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    }
+    .ticker-track {
+      display: flex; gap: 48px;
+      width: max-content;
+      animation: tick 36s linear infinite;
+      font-family: var(--serif-greek);
+      font-size: clamp(1.1rem, 1.6vw, 1.5rem);
+      color: var(--olive-deep);
+      white-space: nowrap;
+    }
+    .ticker-track span { display: inline-flex; align-items: center; gap: 48px; }
+    .ticker-track em { font-style: italic; color: var(--terracotta); }
+    .ticker-track .star { color: var(--olive); opacity: 0.55; font-family: var(--serif-body); }
+    @keyframes tick {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* Reserve card (hero right) */
+    .reserve {
+      position: relative;
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: clamp(26px, 2.6vw, 36px);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.6) inset,
+        0 32px 60px -28px rgba(24,20,18,0.22),
+        0 4px 12px -4px rgba(24,20,18,0.08);
+    }
+    .reserve::before {
+      content: "";
+      position: absolute; inset: 8px;
+      border: 1px dashed rgba(24,20,18,0.22);
+      border-radius: 2px;
+      pointer-events: none;
+    }
+    .reserve-head {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 16px;
+      padding-right: 70px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .reserve-head h3 {
+      font-family: var(--serif-display);
+      font-variation-settings: "SOFT" 80, "WONK" 1, "opsz" 72;
+      font-size: 28px;
+      font-style: italic;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .reserve-head .no { font-family: var(--serif-greek); font-size: 16px; color: var(--terracotta); font-style: italic; }
+
+    .reserve-note {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .reserve-note strong { color: var(--ink); font-weight: 500; }
+
+    .reserve-form {
+      margin-top: 22px;
+      display: grid;
+      gap: 12px;
+    }
+    .field {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      background: var(--paper);
+      border: 1px solid var(--line-soft);
+      border-radius: 2px;
+      transition: border-color .25s ease, background .25s ease;
+    }
+    .field:focus-within { border-color: var(--olive); background: var(--sand); }
+    .field label {
+      font-family: var(--serif-body);
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+    }
+    .field input,
+    .field select {
+      border: 0; outline: 0; background: transparent;
+      font: inherit;
+      font-size: 15px;
+      color: var(--ink);
+      font-family: var(--serif-body);
+      appearance: none;
+      -webkit-appearance: none;
+      width: 100%;
+    }
+    .field select {
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%236f7652' stroke-width='1.3' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 2px center;
+      padding-right: 18px;
+    }
+    .field input[type="date"]::-webkit-calendar-picker-indicator { opacity: .55; cursor: pointer; }
+
+    .reserve-submit {
+      position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 52px;
-      padding: 0 22px;
-      border-radius: 999px;
-      font-size: 15px;
-      font-weight: 700;
-      border: 1px solid transparent;
-      transition: transform 0.2s ease, background 0.2s ease;
-    }
-    .btn:hover { transform: translateY(-1px); }
-    .btn.primary {
-      background: var(--ink);
-      color: var(--white);
-      box-shadow: 0 12px 28px rgba(24,20,18,0.18);
-    }
-    .btn.secondary {
-      background: rgba(255,255,255,0.72);
-      border-color: var(--line);
-      color: var(--ink);
-    }
-
-    .site-nav {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(18px);
-      background: rgba(244, 237, 228, 0.84);
-      border-bottom: 1px solid var(--line);
-    }
-    .site-nav .container {
-      min-height: 78px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .brand-mark {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 1px solid rgba(24,20,18,0.08);
-      background: var(--surface);
-      box-shadow: var(--shadow);
-      flex-shrink: 0;
-    }
-    .brand-copy strong {
-      display: block;
-      font-size: 15px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .brand-copy span {
-      display: block;
-      font-size: 13px;
-      color: var(--muted);
-    }
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .hero {
-      padding: 34px 0 48px;
-    }
-    .hero-shell {
-      display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
-      gap: 28px;
-      align-items: stretch;
-    }
-    .hero-stage {
-      position: relative;
-      min-height: 760px;
-      overflow: hidden;
-      border-radius: 36px;
-      background:
-        linear-gradient(180deg, rgba(20,16,14,0.18) 0%, rgba(20,16,14,0.52) 52%, rgba(20,16,14,0.84) 100%),
-        url('./public/images/nostos-logo.jpg') center/cover no-repeat,
-        linear-gradient(135deg, #d8c2a5 0%, #bc9672 52%, #8d7059 100%);
-      box-shadow: var(--shadow);
-    }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 36px 38px 42px;
-      color: var(--white);
-    }
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
       gap: 10px;
-    }
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.14);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-    .hero-copy {
-      max-width: 700px;
-      padding-top: 80px;
-    }
-    .hero-copy .eyebrow,
-    .hero-copy p { color: rgba(255,255,255,0.88); }
-    .hero-copy .eyebrow::before { background: rgba(255,255,255,0.72); }
-    .hero-copy .lead {
-      margin-top: 24px;
-      color: rgba(255,255,255,0.85);
-      max-width: 54ch;
-    }
-    .hero-meta {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 30px;
-      max-width: 760px;
-    }
-    .hero-meta .meta-card {
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(5px);
-    }
-    .meta-card strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 14px;
-      color: var(--white);
-    }
-    .meta-card span {
-      font-size: 13px;
-      color: rgba(255,255,255,0.74);
-      line-height: 1.6;
-    }
-
-    .booking-panel {
-      display: flex;
-      flex-direction: column;
-      min-height: 760px;
-      border-radius: 32px;
-      overflow: hidden;
-      background: var(--surface);
-      border: 1px solid rgba(24,20,18,0.08);
-      box-shadow: var(--shadow);
-    }
-    .booking-head {
-      padding: 34px 34px 28px;
-      background: linear-gradient(180deg, rgba(111,118,82,0.12), rgba(111,118,82,0.02));
-      border-bottom: 1px solid var(--line);
-    }
-    .booking-head h2 {
-      font-size: clamp(2rem, 3.8vw, 3rem);
-      margin-bottom: 12px;
-    }
-    .booking-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
-    }
-    .pill {
-      padding: 9px 13px;
-      border-radius: 999px;
-      background: rgba(111,118,82,0.1);
-      color: var(--olive-deep);
-      font-size: 13px;
-      font-weight: 700;
-    }
-    .booking-body {
-      flex: 1;
-      min-height: 560px;
-      background: var(--white);
-    }
-    .booking-body iframe {
-      width: 100%;
-      height: 100%;
-      min-height: 560px;
-      border: 0;
-    }
-
-    .two-col,
-    .story-grid,
-    .details-grid,
-    .cta-grid {
-      display: grid;
-      gap: 28px;
-      align-items: start;
-    }
-    .two-col { grid-template-columns: 1fr 1fr; }
-    .story-grid { grid-template-columns: 1.1fr 0.9fr; }
-    .details-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .cta-grid { grid-template-columns: 1.15fr 0.85fr; }
-
-    .panel,
-    .quote-panel,
-    .feature-card,
-    .cta-panel,
-    .image-panel {
-      background: var(--surface);
-      border: 1px solid rgba(24,20,18,0.08);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow);
-    }
-    .panel,
-    .quote-panel,
-    .cta-panel { padding: 34px; }
-    .panel h2,
-    .quote-panel h2,
-    .cta-panel h2 { margin-bottom: 18px; }
-    .panel p + p { margin-top: 14px; }
-
-    .quote-panel {
-      background: var(--ink);
-      color: var(--white);
-    }
-    .quote-panel .eyebrow,
-    .quote-panel p { color: rgba(255,255,255,0.74); }
-    .quote-panel .eyebrow::before { background: rgba(255,255,255,0.54); }
-    .quote-panel blockquote {
-      margin: 0 0 18px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-    }
-
-    .feature-card {
-      padding: 28px;
-      height: 100%;
-    }
-    .feature-index {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 18px;
-      border-radius: 50%;
-      background: rgba(185,111,76,0.12);
-      color: var(--terracotta);
-      font-size: 12px;
-      font-weight: 800;
-    }
-    .feature-card p { margin-top: 10px; }
-
-    .image-panel {
-      position: relative;
-      overflow: hidden;
-      min-height: 460px;
-      background:
-        linear-gradient(180deg, rgba(24,20,18,0.02), rgba(24,20,18,0.24)),
-        url('./public/images/nostos-logo.jpg') center/cover no-repeat,
-        linear-gradient(135deg, #dec7a7 0%, #c49b76 100%);
-    }
-    .overlay-card {
-      position: absolute;
-      left: 28px;
-      right: 28px;
-      bottom: 28px;
-      padding: 22px 24px;
-      border-radius: 20px;
-      background: rgba(251,247,241,0.92);
-      border: 1px solid rgba(24,20,18,0.08);
-      backdrop-filter: blur(8px);
-    }
-    .overlay-card strong {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 15px;
-      color: var(--ink);
-    }
-
-    .list {
-      display: grid;
-      gap: 16px;
-      margin-top: 24px;
-    }
-    .list-item {
-      display: grid;
-      grid-template-columns: 18px 1fr;
-      gap: 14px;
-      padding-top: 16px;
-      border-top: 1px solid var(--line);
-    }
-    .list-item:first-child {
-      border-top: 0;
-      padding-top: 0;
-    }
-    .dot {
-      width: 10px;
-      height: 10px;
       margin-top: 8px;
+      width: 100%;
+      padding: 18px 22px;
+      background: var(--ink);
+      color: var(--cream);
+      border: 0;
+      border-radius: 2px;
+      cursor: pointer;
+      font-family: var(--serif-display);
+      font-variation-settings: "SOFT" 70, "WONK" 1, "opsz" 72;
+      font-style: italic;
+      font-size: 19px;
+      letter-spacing: -0.01em;
+      transition: transform .25s ease, background .25s ease;
+    }
+    .reserve-submit::before {
+      content: "";
+      position: absolute; inset: 4px;
+      border: 1px solid rgba(251,247,241,0.28);
+      border-radius: 1px;
+      pointer-events: none;
+    }
+    .reserve-submit:hover { background: var(--olive-night); transform: translateY(-1px); }
+    .reserve-submit:active { transform: translateY(0); }
+    .reserve-submit .arrow { display: inline-block; transition: transform .3s ease; }
+    .reserve-submit:hover .arrow { transform: translateX(4px); }
+
+    .reserve-foot {
+      margin-top: 18px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .reserve-foot a { color: var(--ink); border-bottom: 1px solid var(--line); }
+    .reserve-foot a:hover { color: var(--terracotta); border-color: var(--terracotta); }
+    .stamp {
+      position: absolute;
+      right: -34px; top: -34px;
+      width: 88px; height: 88px;
       border-radius: 50%;
       background: var(--terracotta);
-      box-shadow: 0 0 0 6px rgba(185,111,76,0.12);
+      color: var(--cream);
+      display: grid; place-items: center;
+      transform: rotate(-12deg);
+      box-shadow: 0 14px 24px -10px rgba(141,79,53,0.55);
+      font-family: var(--serif-display);
+      font-variation-settings: "SOFT" 100, "WONK" 1;
+      font-style: italic;
+      text-align: center;
+      line-height: 1.05;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      z-index: 3;
+      border: 1px solid rgba(251,247,241,0.35);
     }
-    .list-item strong {
+    .stamp::after {
+      content: "";
+      position: absolute; inset: 5px;
+      border: 1px dashed rgba(251,247,241,0.45);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .stamp strong { display: block; font-size: 17px; margin-bottom: 3px; letter-spacing: 0.05em; }
+
+    /* ------------------------------------------------------------------ */
+    /*  Chapter scaffolding                                                */
+    /* ------------------------------------------------------------------ */
+    section.chapter { padding: clamp(80px, 11vw, 150px) 0; position: relative; }
+    section.chapter + section.chapter { border-top: 1px solid var(--line-soft); }
+
+    .chapter-head {
+      display: grid;
+      grid-template-columns: clamp(140px, 16vw, 220px) 1fr;
+      gap: clamp(28px, 4vw, 68px);
+      align-items: end;
+      margin-bottom: clamp(40px, 6vw, 72px);
+    }
+    .chapter-head .marker {
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .chapter-head .marker .caps { color: var(--olive-deep); }
+
+    /* ------------------------------------------------------------------ */
+    /*  Story (chapter α)                                                  */
+    /* ------------------------------------------------------------------ */
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(28px, 5vw, 72px);
+      align-items: start;
+    }
+    .story-body { position: relative; }
+    .story-body h2 { margin-bottom: 24px; }
+    .story-body h2 em { font-style: italic; color: var(--terracotta-d); }
+
+    .dropcap::first-letter {
+      font-family: var(--serif-display);
+      font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+      font-style: italic;
+      font-size: 4.2em;
+      line-height: 0.85;
+      float: left;
+      margin: 6px 12px -4px 0;
+      color: var(--terracotta);
+    }
+    .story-body p + p { margin-top: 18px; }
+
+    .story-aside {
+      position: relative;
+      padding: clamp(28px, 3vw, 44px);
+      background: var(--olive-night);
+      color: var(--cream);
+      border-radius: 2px;
+      isolation: isolate;
+      overflow: hidden;
+    }
+    .story-aside::before {
+      content: "ΝΟΣΤΟΣ";
+      position: absolute;
+      right: -0.18em; bottom: -0.25em;
+      font-family: var(--serif-greek);
+      font-size: clamp(7rem, 16vw, 15rem);
+      line-height: 0.8;
+      color: rgba(255,255,255,0.04);
+      letter-spacing: -0.04em;
+      pointer-events: none;
+    }
+    .story-aside blockquote {
+      margin: 0;
+      font-family: var(--serif-display);
+      font-variation-settings: "SOFT" 80, "WONK" 1, "opsz" 144;
+      font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-style: italic;
+      color: var(--cream);
+    }
+    .story-aside blockquote::before {
+      content: "“";
       display: block;
+      font-size: 4rem;
+      line-height: 0.4;
+      color: var(--terracotta);
+      margin-bottom: 16px;
+    }
+    .story-aside cite {
+      display: block;
+      margin-top: 22px;
+      font-style: normal;
+      font-family: var(--serif-body);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(251,247,241,0.6);
+    }
+    .story-aside .greek-line {
+      margin-top: 22px;
+      font-family: var(--serif-greek);
+      font-size: 17px;
+      color: rgba(251,247,241,0.72);
+      font-style: italic;
+    }
+
+    /* ------------------------------------------------------------------ */
+    /*  Menu (chapter β)                                                   */
+    /* ------------------------------------------------------------------ */
+    .menu-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(36px, 5vw, 72px);
+      align-items: end;
+      margin-bottom: clamp(32px, 4vw, 56px);
+    }
+    .menu-hero h2 em { font-style: italic; color: var(--terracotta-d); }
+    .menu-hero p { max-width: 44ch; }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(24px, 3vw, 44px);
+      position: relative;
+    }
+    .menu-col {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding-top: 18px;
+      border-top: 1px solid var(--ink);
+    }
+    .menu-col > .caps {
+      color: var(--olive-deep);
       margin-bottom: 4px;
-      font-size: 15px;
+    }
+    .menu-col h3 {
+      font-family: var(--serif-greek);
+      font-size: clamp(1.5rem, 2vw, 1.9rem);
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .menu-col h3 + .sub {
+      font-family: var(--serif-body);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: -4px;
+      margin-bottom: 12px;
+    }
+    .menu-col ul {
+      list-style: none;
+      padding: 0; margin: 0;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .menu-col li {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .menu-col li .dish {
+      font-family: var(--serif-display);
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
       color: var(--ink);
     }
-
-    .cta-panel {
-      background: linear-gradient(135deg, rgba(111,118,82,0.08), rgba(185,111,76,0.08)), var(--surface);
+    .menu-col li .dish em {
+      font-family: var(--serif-greek);
+      font-style: italic;
+      color: var(--terracotta);
+      margin-right: 8px;
+      font-weight: 400;
     }
-
-    footer {
-      padding: 34px 0 52px;
+    .menu-col li p {
+      font-size: 13.5px;
+      line-height: 1.55;
       color: var(--muted);
     }
-    .footer-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
+
+    .menu-foot {
+      margin-top: clamp(40px, 5vw, 60px);
+      padding: 22px 26px;
+      background: var(--sand);
+      border: 1px solid var(--line-soft);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 22px;
       flex-wrap: wrap;
-      padding-top: 24px;
-      border-top: 1px solid var(--line);
+    }
+    .menu-foot p { color: var(--ink-soft); font-size: 14px; }
+    .menu-foot .caps { color: var(--olive-deep); }
+
+    /* ------------------------------------------------------------------ */
+    /*  Visit (chapter γ)                                                  */
+    /* ------------------------------------------------------------------ */
+    .visit-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: clamp(36px, 5vw, 72px);
+      align-items: stretch;
+    }
+    .visit-info {
+      display: flex; flex-direction: column; gap: 28px;
+    }
+    .info-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 24px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    .info-row:last-child { border-bottom: 0; }
+    .info-row .label {
+      font-family: var(--serif-body);
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      color: var(--olive-deep);
+      font-weight: 600;
+      padding-top: 4px;
+    }
+    .info-row .value strong {
+      display: block;
+      font-family: var(--serif-display);
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .info-row .value p {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--ink-soft);
+    }
+    .info-row .value a {
+      border-bottom: 1px solid var(--line);
+      transition: color .25s ease, border-color .25s ease;
+    }
+    .info-row .value a:hover { color: var(--terracotta); border-color: var(--terracotta); }
+
+    .visit-card {
+      position: relative;
+      padding: clamp(28px, 3vw, 44px);
+      background:
+        linear-gradient(180deg, rgba(24,20,18,0.0) 0%, rgba(24,20,18,0.75) 100%),
+        radial-gradient(130% 90% at 30% 10%, #8b8a56 0%, #5a5e3a 55%, #2f361f 100%);
+      color: var(--cream);
+      overflow: hidden;
+      min-height: 460px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      border-radius: 2px;
+    }
+    .visit-card::before {
+      content: "";
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/></svg>");
+      mix-blend-mode: overlay;
+      opacity: 0.55;
+      pointer-events: none;
+    }
+    .visit-card > * { position: relative; }
+
+    .visit-card .big-greek {
+      font-family: var(--serif-greek);
+      font-size: clamp(3.6rem, 8vw, 6.2rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      color: rgba(251,247,241,0.96);
+    }
+    .visit-card .big-greek em { font-style: italic; color: var(--terracotta); }
+    .visit-card .sub {
+      margin-top: 18px;
+      font-family: var(--serif-display);
+      font-size: 19px;
+      font-style: italic;
+      color: rgba(251,247,241,0.82);
+      max-width: 26ch;
+      line-height: 1.35;
+    }
+    .visit-card .ring {
+      align-self: flex-start;
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 22px;
+      border: 1px solid rgba(251,247,241,0.35);
+      border-radius: 999px;
+      font-family: var(--serif-body);
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream);
+      transition: background .3s ease, border-color .3s ease;
+    }
+    .visit-card .ring:hover { background: rgba(251,247,241,0.1); border-color: var(--cream); }
+    .visit-card .ring .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--terracotta); box-shadow: 0 0 0 3px rgba(185,111,76,0.28); }
+
+    /* ------------------------------------------------------------------ */
+    /*  Final quote                                                        */
+    /* ------------------------------------------------------------------ */
+    .epigraph {
+      padding: clamp(70px, 10vw, 130px) 0;
+      text-align: center;
+    }
+    .epigraph .rule { max-width: 420px; margin: 0 auto 36px; }
+    .epigraph blockquote {
+      margin: 0 auto;
+      max-width: 20ch;
+      font-family: var(--serif-display);
+      font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+      font-size: clamp(2.4rem, 6vw, 4.6rem);
+      font-style: italic;
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+      color: var(--ink);
+    }
+    .epigraph blockquote em { color: var(--terracotta-d); font-style: italic; }
+    .epigraph .attrib {
+      margin-top: 32px;
+      font-family: var(--serif-greek);
+      font-style: italic;
+      font-size: 17px;
+      color: var(--muted);
     }
 
-    @media (max-width: 1120px) {
-      .hero-shell,
-      .two-col,
+    /* ------------------------------------------------------------------ */
+    /*  Footer                                                             */
+    /* ------------------------------------------------------------------ */
+    footer {
+      background: var(--ink);
+      color: rgba(251,247,241,0.82);
+      padding: clamp(60px, 7vw, 100px) 0 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    footer::before {
+      content: "ΝΟΣΤΟΣ";
+      position: absolute;
+      inset: auto 0 -0.2em 0;
+      text-align: center;
+      font-family: var(--serif-greek);
+      font-size: clamp(8rem, 22vw, 22rem);
+      line-height: 0.85;
+      letter-spacing: -0.04em;
+      color: rgba(251,247,241,0.05);
+      pointer-events: none;
+    }
+    .foot-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: clamp(32px, 4vw, 60px);
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(251,247,241,0.1);
+    }
+    .foot-brand h4 {
+      font-family: var(--serif-greek);
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      line-height: 0.9;
+      margin-bottom: 18px;
+      color: var(--cream);
+    }
+    .foot-brand p { color: rgba(251,247,241,0.7); max-width: 36ch; font-size: 15px; }
+    .foot-col h5 {
+      font-family: var(--serif-body);
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      color: rgba(251,247,241,0.55);
+      margin: 0 0 20px;
+    }
+    .foot-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 15px; }
+    .foot-col a { color: var(--cream); transition: color .25s ease; }
+    .foot-col a:hover { color: var(--terracotta); }
+    .foot-row {
+      position: relative;
+      margin-top: 32px;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: rgba(251,247,241,0.5);
+    }
+
+    /* ------------------------------------------------------------------ */
+    /*  Page-load choreography                                             */
+    /* ------------------------------------------------------------------ */
+    .anim { opacity: 0; transform: translateY(14px); animation: rise .9s cubic-bezier(.2,.7,.2,1) forwards; }
+    .anim.d1 { animation-delay: .08s; }
+    .anim.d2 { animation-delay: .16s; }
+    .anim.d3 { animation-delay: .26s; }
+    .anim.d4 { animation-delay: .36s; }
+    .anim.d5 { animation-delay: .48s; }
+    .anim.d6 { animation-delay: .62s; }
+    .anim.d7 { animation-delay: .78s; }
+    @keyframes rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .anim, .ticker-track { animation: none !important; opacity: 1 !important; transform: none !important; }
+    }
+
+    /* ------------------------------------------------------------------ */
+    /*  Responsive                                                         */
+    /* ------------------------------------------------------------------ */
+    @media (max-width: 1200px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .reserve { max-width: 560px; }
       .story-grid,
-      .cta-grid { grid-template-columns: 1fr; }
-      .details-grid { grid-template-columns: 1fr; }
-      .hero-stage,
-      .booking-panel { min-height: auto; }
-      .booking-body iframe { min-height: 640px; }
+      .menu-hero,
+      .visit-grid { grid-template-columns: 1fr; }
+      .menu-grid { grid-template-columns: repeat(2, 1fr); }
+      .chapter-head { grid-template-columns: 1fr; align-items: start; }
+      .foot-grid { grid-template-columns: 1fr 1fr; }
+      .foot-brand { grid-column: 1 / -1; }
     }
-
-    @media (max-width: 760px) {
-      .section { padding: 88px 0; }
-      .site-nav .container {
-        padding-top: 14px;
-        padding-bottom: 14px;
-        align-items: flex-start;
-      }
-      .nav-links { gap: 12px; font-size: 13px; }
-      .hero-content,
-      .booking-head,
-      .panel,
-      .quote-panel,
-      .feature-card,
-      .cta-panel { padding: 24px; }
-      .hero-meta { grid-template-columns: 1fr; }
-      .overlay-card {
-        left: 18px;
-        right: 18px;
-        bottom: 18px;
-      }
-      .booking-body iframe { min-height: 560px; }
+    @media (max-width: 720px) {
+      .nav .shell { flex-wrap: wrap; gap: 14px; }
+      .nav-links { width: 100%; justify-content: flex-start; flex-wrap: wrap; gap: 16px 22px; }
+      .nav-cta { order: 2; }
+      .display-latin { margin-left: 0; }
+      .field { grid-template-columns: 96px 1fr; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .info-row { grid-template-columns: 1fr; gap: 8px; }
+      .foot-grid { grid-template-columns: 1fr; }
+      .visit-card { min-height: 360px; }
+      .stamp { right: -6px; top: -12px; width: 72px; height: 72px; font-size: 11px; }
+      .stamp strong { font-size: 16px; }
     }
   </style>
 </head>
 <body>
-  <nav class="site-nav">
-    <div class="container">
-      <a class="brand" href="#top" aria-label="Nostos home">
-        <span class="brand-mark"><img src="./public/images/nostos-logo.jpg" alt="Nostos logo" /></span>
-        <span class="brand-copy">
-          <strong>Nostos</strong>
-          <span>Authentic Greek dining in Hout Bay</span>
-        </span>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav" aria-label="Primary">
+    <div class="shell">
+      <a class="wordmark" href="#top" aria-label="Nostos — home">
+        <span class="mark">Nostos</span>
+        <span class="mark-small greek">νόστος</span>
       </a>
       <div class="nav-links">
         <a href="#story">Story</a>
-        <a href="#experience">Experience</a>
+        <a href="#kitchen">Kitchen</a>
         <a href="#visit">Visit</a>
-        <a href="#book">Book</a>
       </div>
+      <a class="nav-cta" href="#reserve"><span class="dot"></span>Reserve a table</a>
     </div>
   </nav>
 
   <main id="top">
+
+    <!-- ============ HERO ============ -->
     <section class="hero">
-      <div class="container">
-        <div class="hero-shell">
-          <section class="hero-stage" aria-label="Nostos hero section">
-            <div class="hero-content">
-              <div class="hero-tags">
-                <span class="tag">A return home</span>
-                <span class="tag">Greek • Hout Bay</span>
-              </div>
+      <div class="shell">
+        <div class="hero-grid">
 
-              <div class="hero-copy">
-                <div class="eyebrow">Nostos (νόστος)</div>
-                <h1>Authentic Greek dining shaped by memory, roots, and craft.</h1>
-                <p class="lead">Welcome to Nostos. Our food is inspired by memory: every plate, every flavour, has a purpose and a story. We honour our roots, our craft, and our beautiful Hout Bay home — from our kitchen and our hearts, to your table.</p>
-                <div class="btn-row" style="margin-top: 30px;">
-                  <a class="btn primary" href="#book">Book a table</a>
-                  <a class="btn secondary" href="#story">Discover Nostos</a>
-                </div>
-                <div class="hero-meta">
-                  <div class="meta-card">
-                    <strong>Authentic Greek</strong>
-                    <span>A warm, story-led dining experience rooted in Greek food and hospitality.</span>
-                  </div>
-                  <div class="meta-card">
-                    <strong>Hout Bay</strong>
-                    <span>Built around place, memory, and the feeling of being welcomed properly.</span>
-                  </div>
-                  <div class="meta-card">
-                    <strong>Book simply</strong>
-                    <span>Reserve directly through Dineplan without hunting through cluttered pages.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <div class="hero-left">
 
-          <aside class="booking-panel" id="book">
-            <div class="booking-head">
-              <div class="eyebrow">Reservations</div>
-              <h2>Reserve through Dineplan</h2>
-              <p>Book your table quickly and keep the rest of your attention on the experience that matters.</p>
-              <div class="booking-pills">
-                <span class="pill">Hout Bay</span>
-                <span class="pill">No corkage</span>
-                <span class="pill">Authentic Greek</span>
+            <div class="hero-meta anim d1">
+              <span><b>Est.</b> Hout Bay</span>
+              <span class="dash"></span>
+              <span><b>Cuisine</b> Greek &nbsp;·&nbsp; Aegean</span>
+              <span class="dash"></span>
+              <span><b>No.</b> αʹ</span>
+            </div>
+
+            <div class="display-stack">
+              <div class="display-greek anim d2">Ν<em>Ό</em>ΣΤΟΣ</div>
+              <div class="display-latin anim d3">a returning home</div>
+            </div>
+
+            <div class="display-phon anim d4">
+              <span class="caps">Pronunciation</span>
+              <span class="pipe"></span>
+              <i>/ˈnɒs.tɒs/ — Greek, the longing for home</i>
+            </div>
+
+            <p class="hero-tagline anim d5">
+              Food inspired by <em>memory</em>. A room built for <em>return</em>. Every plate carries a story from the coast of Greece to a table in Hout Bay.
+            </p>
+
+            <p class="hero-sub anim d6">
+              Nostos is a family-run taverna where the mezze come slow, the fire stays lit, and you are trusted to bring your own bottle. No corkage. No theatre. Only hospitality, properly understood.
+            </p>
+
+            <div class="ticker anim d7" aria-hidden="true">
+              <div class="ticker-track">
+                <span>
+                  φιλοξενία <em>hospitality</em> <span class="star">✦</span>
+                  θάλασσα <em>the sea</em> <span class="star">✦</span>
+                  οικογένεια <em>family</em> <span class="star">✦</span>
+                  φαγητό <em>food</em> <span class="star">✦</span>
+                  φως <em>light</em> <span class="star">✦</span>
+                  χαρά <em>joy</em> <span class="star">✦</span>
+                </span>
+                <span>
+                  φιλοξενία <em>hospitality</em> <span class="star">✦</span>
+                  θάλασσα <em>the sea</em> <span class="star">✦</span>
+                  οικογένεια <em>family</em> <span class="star">✦</span>
+                  φαγητό <em>food</em> <span class="star">✦</span>
+                  φως <em>light</em> <span class="star">✦</span>
+                  χαρά <em>joy</em> <span class="star">✦</span>
+                </span>
               </div>
             </div>
-            <div class="booking-body">
-              <iframe src="https://www.dineplan.com/restaurants/nostos" title="Book a table at Nostos through Dineplan"></iframe>
+
+          </div>
+
+          <!-- ============ RESERVE CARD ============ -->
+          <aside class="reserve anim d4" id="reserve" aria-label="Reserve a table">
+            <div class="stamp" aria-hidden="true">
+              <div>
+                <strong>BYO</strong>
+                no corkage
+              </div>
             </div>
+
+            <div class="reserve-head">
+              <h3>Reserve a table</h3>
+              <span class="no greek">νʹ</span>
+            </div>
+
+            <p class="reserve-note">
+              We hold tables for two to ten. Bigger tables &mdash; call us. The kitchen opens at 17h30, Tuesday through Sunday.
+            </p>
+
+            <form class="reserve-form" id="reserveForm" method="get" target="_blank" rel="noreferrer">
+              <label class="field" for="r-date">
+                <span>Date</span>
+                <input id="r-date" name="date" type="date" required>
+              </label>
+
+              <label class="field" for="r-time">
+                <span>Time</span>
+                <select id="r-time" name="time" required>
+                  <option value="17:30">17:30</option>
+                  <option value="18:00">18:00</option>
+                  <option value="18:30">18:30</option>
+                  <option value="19:00" selected>19:00</option>
+                  <option value="19:30">19:30</option>
+                  <option value="20:00">20:00</option>
+                  <option value="20:30">20:30</option>
+                  <option value="21:00">21:00</option>
+                </select>
+              </label>
+
+              <label class="field" for="r-covers">
+                <span>Guests</span>
+                <select id="r-covers" name="covers" required>
+                  <option value="1">1 guest</option>
+                  <option value="2" selected>2 guests</option>
+                  <option value="3">3 guests</option>
+                  <option value="4">4 guests</option>
+                  <option value="5">5 guests</option>
+                  <option value="6">6 guests</option>
+                  <option value="7">7 guests</option>
+                  <option value="8">8 guests</option>
+                  <option value="9">9 guests</option>
+                  <option value="10">10 guests</option>
+                </select>
+              </label>
+
+              <button class="reserve-submit" type="submit">
+                <span>Find a table</span>
+                <span class="arrow">→</span>
+              </button>
+            </form>
+
+            <div class="reserve-foot">
+              <span>Confirmed instantly via Dineplan</span>
+              <a href="tel:+27210000000">Prefer to call?</a>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============ STORY (α) ============ -->
+    <section class="chapter" id="story">
+      <div class="shell">
+        <div class="chapter-head">
+          <div class="marker">
+            <span class="folio">αʹ</span>
+            <span class="caps">Chapter one &nbsp;·&nbsp; the name</span>
+          </div>
+          <h2>A <em>return</em>, not an arrival.</h2>
+        </div>
+
+        <div class="story-grid">
+          <div class="story-body">
+            <p class="lead dropcap">
+              Nostos is an old Greek word for the ache of coming home &mdash; the longing that pulls a traveller back across water, back to the kitchen they grew up in, back to the table where everyone is already sitting down. We named the restaurant for that feeling because it's the one we wanted you to leave with.
+            </p>
+            <p>
+              The food is not reinvented. It is remembered. Lamb that has cooked since the morning. Tomatoes dressed only with what they need. Bread torn, not sliced. A pour of something cold, because you brought it yourself and we kept the glass cold for you.
+            </p>
+            <p>
+              Hout Bay holds a particular kind of light in the late afternoon &mdash; low, salted, a little tired from the day. That is the hour we built the room for. Come before then, or come right at it, but come hungry either way.
+            </p>
+          </div>
+
+          <aside class="story-aside">
+            <blockquote>
+              Every plate, every flavour, has a purpose and a story.
+            </blockquote>
+            <div class="greek-line">&mdash; κάθε πιάτο έχει μια ιστορία</div>
+            <cite>— the house creed</cite>
           </aside>
         </div>
       </div>
     </section>
 
-    <section class="section" id="story">
-      <div class="container">
-        <div class="story-grid">
-          <div class="quote-panel">
-            <div class="eyebrow">The spirit of Nostos</div>
-            <blockquote>“Every plate, every flavour, has a purpose and a story.”</blockquote>
-            <p>Nostos is strongest when it feels honest: Greek at heart, generous in tone, and calm enough to let the food and atmosphere speak for themselves.</p>
+
+    <!-- ============ KITCHEN (β) ============ -->
+    <section class="chapter" id="kitchen">
+      <div class="shell">
+        <div class="chapter-head">
+          <div class="marker">
+            <span class="folio">βʹ</span>
+            <span class="caps">Chapter two &nbsp;·&nbsp; the kitchen</span>
           </div>
-          <div class="panel">
-            <div class="eyebrow">A return home</div>
-            <h2>A Greek restaurant with warmth, soul, and no need to shout.</h2>
-            <p>Nostos takes its name from the idea of returning home. That feeling should shape the whole experience — familiar without being tired, refined without becoming cold, and memorable without turning theatrical.</p>
-            <p>The site should reflect that same restraint: beautiful typography, warm Mediterranean tones, direct booking, and just enough story to make the place feel real before someone even arrives.</p>
+          <h2>From the coals, the sea, and the garden.</h2>
+        </div>
+
+        <div class="menu-hero">
+          <div class="caps">A moving menu &nbsp;·&nbsp; changes with the season</div>
+          <p>
+            The menu shifts with what the coast gives us and what the farmers bring in that morning. What follows is an honest taste of the house &mdash; ask your server what's new today.
+          </p>
+        </div>
+
+        <div class="menu-grid">
+
+          <div class="menu-col">
+            <span class="caps">I &nbsp;·&nbsp; to begin</span>
+            <h3 class="greek">Μεζέδες</h3>
+            <div class="sub">Small plates, for the table</div>
+            <ul>
+              <li>
+                <span class="dish"><em>τζατζίκι</em>Tzatziki</span>
+                <p>Strained yoghurt, garden cucumber, dill, garlic crushed by hand.</p>
+              </li>
+              <li>
+                <span class="dish"><em>ταραμάς</em>Taramasalata</span>
+                <p>Smoked roe whipped slowly with olive oil &mdash; eaten with warm bread.</p>
+              </li>
+              <li>
+                <span class="dish"><em>σαγανάκι</em>Saganaki</span>
+                <p>Sheep's cheese, pan-flashed, honey and cracked pepper.</p>
+              </li>
+            </ul>
           </div>
+
+          <div class="menu-col">
+            <span class="caps">II &nbsp;·&nbsp; the fire</span>
+            <h3 class="greek">Από τη φωτιά</h3>
+            <div class="sub">Slow coals, clean flavours</div>
+            <ul>
+              <li>
+                <span class="dish"><em>σουβλάκι</em>Lamb Souvlaki</span>
+                <p>Marinated overnight, grilled over oak, lemon, oregano, flatbread.</p>
+              </li>
+              <li>
+                <span class="dish"><em>κοντοσούβλι</em>Kontosouvli</span>
+                <p>Whole pork shoulder on the spit &mdash; crackling edges, soft centre.</p>
+              </li>
+              <li>
+                <span class="dish"><em>παϊδάκια</em>Lamb Chops</span>
+                <p>Karoo lamb, rosemary salt, a half-lemon charred face-down.</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="menu-col">
+            <span class="caps">III &nbsp;·&nbsp; the sea</span>
+            <h3 class="greek">Από τη θάλασσα</h3>
+            <div class="sub">Whatever the boat brought in</div>
+            <ul>
+              <li>
+                <span class="dish"><em>ψάρι</em>Catch of the Day</span>
+                <p>Line-caught, roasted whole, olive oil, lemon, nothing more.</p>
+              </li>
+              <li>
+                <span class="dish"><em>χταπόδι</em>Octopus</span>
+                <p>Grilled until tender, red wine vinegar, capers, new potato.</p>
+              </li>
+              <li>
+                <span class="dish"><em>γαρίδες</em>Prawn Saganaki</span>
+                <p>West Coast prawns, tomato, feta, ouzo, crusty bread for the pan.</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="menu-col">
+            <span class="caps">IV &nbsp;·&nbsp; the end</span>
+            <h3 class="greek">Γλυκά</h3>
+            <div class="sub">Sweet, but not too sweet</div>
+            <ul>
+              <li>
+                <span class="dish"><em>γαλακτομπούρεκο</em>Galaktoboureko</span>
+                <p>Semolina custard, crisp filo, orange-blossom syrup.</p>
+              </li>
+              <li>
+                <span class="dish"><em>λουκουμάδες</em>Loukoumades</span>
+                <p>Warm honey dumplings, walnut crumb, cinnamon dust.</p>
+              </li>
+              <li>
+                <span class="dish"><em>καφές</em>Greek Coffee</span>
+                <p>Thick, bitter, served with a glass of cold water and time.</p>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="menu-foot">
+          <p><span class="caps">Note &nbsp;·&nbsp;</span> We do not yet hold a liquor licence &mdash; <strong style="color:var(--ink)">bring your own bottle, no corkage.</strong> Chilled glasses are on us.</p>
+          <p class="caps">Dietary requirements &mdash; tell us &amp; we'll handle it.</p>
         </div>
       </div>
     </section>
 
-    <section class="section" id="experience">
-      <div class="container">
-        <div class="panel" style="margin-bottom: 28px;">
-          <div class="eyebrow">The experience</div>
-          <h2>What the site should communicate immediately</h2>
-          <p class="lead">Not design commentary. Not placeholder language. Just the essentials of a real restaurant brand: what this place is, how it feels, why it’s worth visiting, and how to book without friction.</p>
-        </div>
-        <div class="details-grid">
-          <article class="feature-card">
-            <div class="feature-index">01</div>
-            <h3>Atmosphere first</h3>
-            <p>Warm, coastal, intimate, and grounded in hospitality rather than trendy restaurant clichés.</p>
-          </article>
-          <article class="feature-card">
-            <div class="feature-index">02</div>
-            <h3>Story with restraint</h3>
-            <p>The brand carries real emotion, but it should be expressed with clarity — not long-winded explanation.</p>
-          </article>
-          <article class="feature-card">
-            <div class="feature-index">03</div>
-            <h3>Booking without ugliness</h3>
-            <p>The booking path stays obvious, but it lives inside a proper hospitality experience rather than dominating it.</p>
-          </article>
-        </div>
-      </div>
-    </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="two-col">
-          <div class="image-panel" aria-label="Nostos visual direction">
-            <div class="overlay-card">
-              <strong>What will make this site feel premium</strong>
-              <p>Real food, table, interior, and exterior photography. The current logo image is only a temporary stand-in while the structure gets fixed.</p>
+    <!-- ============ VISIT (γ) ============ -->
+    <section class="chapter" id="visit">
+      <div class="shell">
+        <div class="chapter-head">
+          <div class="marker">
+            <span class="folio">γʹ</span>
+            <span class="caps">Chapter three &nbsp;·&nbsp; the visit</span>
+          </div>
+          <h2>How to find us, and when we're open.</h2>
+        </div>
+
+        <div class="visit-grid">
+
+          <div class="visit-info">
+            <div class="info-row">
+              <span class="label">Address</span>
+              <div class="value">
+                <strong>Hout Bay, Cape Town</strong>
+                <p>Street address &mdash; to be confirmed with the venue. Drive in from Victoria Road; we are a few minutes from the harbour.</p>
+              </div>
+            </div>
+
+            <div class="info-row">
+              <span class="label">Hours</span>
+              <div class="value">
+                <strong>Tue — Sun · 17h30 until late</strong>
+                <p>Closed Mondays. The kitchen slows a little earlier on Sundays &mdash; book before 20h00 to be safe.</p>
+              </div>
+            </div>
+
+            <div class="info-row">
+              <span class="label">Contact</span>
+              <div class="value">
+                <strong>A quiet line, honestly answered</strong>
+                <p>Call <a href="tel:+27210000000">+27&nbsp;21&nbsp;000&nbsp;0000</a> for larger parties, dietary questions, or to be walked through the menu.</p>
+              </div>
+            </div>
+
+            <div class="info-row">
+              <span class="label">BYO</span>
+              <div class="value">
+                <strong>Bring your own. Always.</strong>
+                <p>No liquor licence, no corkage fee, no fuss. Arrive with the bottle you want to drink. We will keep it cold and open it for you.</p>
+              </div>
+            </div>
+
+            <div class="info-row">
+              <span class="label">Follow</span>
+              <div class="value">
+                <strong>The slow parts of the week, online</strong>
+                <p>
+                  <a href="https://www.instagram.com/nostos_cpt/" target="_blank" rel="noreferrer">Instagram &mdash; @nostos_cpt</a><br />
+                  <a href="https://www.facebook.com/nostos.ct/" target="_blank" rel="noreferrer">Facebook &mdash; nostos.ct</a>
+                </p>
+              </div>
             </div>
           </div>
-          <div class="panel">
-            <div class="eyebrow">What matters now</div>
-            <h2>The foundation is tone, hierarchy, and trust.</h2>
-            <div class="list">
-              <div class="list-item">
-                <span class="dot"></span>
-                <div>
-                  <strong>Clear positioning</strong>
-                  <span>Authentic Greek restaurant in Hout Bay — not a vague “Mediterranean concept.”</span>
-                </div>
-              </div>
-              <div class="list-item">
-                <span class="dot"></span>
-                <div>
-                  <strong>Warm practical details</strong>
-                  <span>Useful information like the BYO policy belongs on the site, but phrased cleanly and confidently.</span>
-                </div>
-              </div>
-              <div class="list-item">
-                <span class="dot"></span>
-                <div>
-                  <strong>Real visual assets next</strong>
-                  <span>The structure now supports them. Once good assets land, the site quality will jump fast.</span>
-                </div>
-              </div>
-            </div>
-          </div>
+
+          <aside class="visit-card">
+            <div class="big-greek">Κ<em>α</em>λώς<br />ήρθατε.</div>
+            <p class="sub">&mdash; welcome home. Walk in hungry, leave slowly, come back soon.</p>
+            <a class="ring" href="#reserve"><span class="dot"></span> Reserve a table</a>
+          </aside>
+
         </div>
       </div>
     </section>
 
-    <section class="section" id="visit">
-      <div class="container">
-        <div class="two-col">
-          <div class="panel">
-            <div class="eyebrow">Visit information</div>
-            <h2>Practical details, handled properly</h2>
-            <div class="list">
-              <div class="list-item">
-                <span class="dot"></span>
-                <div>
-                  <strong>Reservations</strong>
-                  <span>Handled directly through Dineplan so guests can move from interest to booking immediately.</span>
-                </div>
-              </div>
-              <div class="list-item">
-                <span class="dot"></span>
-                <div>
-                  <strong>Bring your own alcohol</strong>
-                  <span>Nostos does not yet have a liquor licence, and guests are welcome to bring their own alcohol without a corkage fee.</span>
-                </div>
-              </div>
-              <div class="list-item">
-                <span class="dot"></span>
-                <div>
-                  <strong>Hout Bay setting</strong>
-                  <span>The brand should feel local, calm, and worth the trip — intimate enough to return to, strong enough to recommend.</span>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <div class="panel">
-            <div class="eyebrow">Next improvements</div>
-            <h2>What I’d add next to make this genuinely strong</h2>
-            <p>A real photo set, a tighter location/contact block, menu highlights, opening hours, and better social proof. Those are the missing pieces now — not more decorative copy about the website itself.</p>
-            <p>This rebuild fixes the biggest mistake: the page now behaves like a restaurant website instead of a commentary page about design decisions.</p>
-          </div>
-        </div>
+    <!-- ============ EPIGRAPH ============ -->
+    <section class="epigraph">
+      <div class="shell">
+        <div class="rule"><span>νόστος &middot; a returning</span></div>
+        <blockquote>
+          The table is <em>set</em>.<br />
+          The rest is up to you.
+        </blockquote>
+        <div class="attrib">— στο τραπέζι, επιτέλους</div>
       </div>
     </section>
 
-    <section class="section" style="padding-top: 0;">
-      <div class="container">
-        <div class="cta-panel cta-grid">
-          <div>
-            <div class="eyebrow">Reserve now</div>
-            <h2>Book the table. Let the room do the rest.</h2>
-            <p class="lead">Nostos should feel welcoming before a guest ever arrives. This is a cleaner foundation for that — and once real restaurant photography is added, it’ll land much harder.</p>
-          </div>
-          <div class="btn-row" style="align-self: end; justify-content: flex-start;">
-            <a class="btn primary" href="#book">Reserve through Dineplan</a>
-            <a class="btn secondary" href="https://www.instagram.com/nostos_cpt/" target="_blank" rel="noreferrer">Instagram</a>
-            <a class="btn secondary" href="https://www.facebook.com/nostos.ct/" target="_blank" rel="noreferrer">Facebook</a>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
+  <!-- ============ FOOTER ============ -->
   <footer>
-    <div class="container">
-      <div class="footer-row">
-        <div>
-          <strong>Nostos</strong><br />
-          <span>A return home — authentic Greek dining in Hout Bay.</span>
+    <div class="shell">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <h4 class="greek">Νόστος.</h4>
+          <p>Authentic Greek dining in Hout Bay. Food inspired by memory, roots and craft &mdash; and a table worth the trip back.</p>
         </div>
-        <div>
-          <span>Food inspired by memory, roots, craft, and the warmth of a table worth coming back to.</span>
+
+        <div class="foot-col">
+          <h5>The house</h5>
+          <ul>
+            <li><a href="#story">Our name</a></li>
+            <li><a href="#kitchen">From the kitchen</a></li>
+            <li><a href="#visit">Visit us</a></li>
+            <li><a href="#reserve">Reserve a table</a></li>
+          </ul>
         </div>
+
+        <div class="foot-col">
+          <h5>Elsewhere</h5>
+          <ul>
+            <li><a href="https://www.instagram.com/nostos_cpt/" target="_blank" rel="noreferrer">Instagram</a></li>
+            <li><a href="https://www.facebook.com/nostos.ct/" target="_blank" rel="noreferrer">Facebook</a></li>
+            <li><a href="tel:+27210000000">Call the restaurant</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="foot-row">
+        <span>&copy; Nostos · Hout Bay</span>
+        <span>Κάθε τραπέζι, μια επιστροφή</span>
+        <span>Site · MMXXVI</span>
       </div>
     </div>
   </footer>
+
+  <script>
+    // -------- Reserve form: deep-link to Dineplan with pre-filled params --------
+    (function () {
+      var form = document.getElementById('reserveForm');
+      var dateInput = document.getElementById('r-date');
+      if (!form || !dateInput) return;
+
+      // Default the date to today; prevent past dates.
+      var today = new Date();
+      var pad = function (n) { return String(n).padStart(2, '0'); };
+      var iso = today.getFullYear() + '-' + pad(today.getMonth() + 1) + '-' + pad(today.getDate());
+      dateInput.min = iso;
+      if (!dateInput.value) dateInput.value = iso;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var date   = dateInput.value;
+        var time   = document.getElementById('r-time').value;
+        var covers = document.getElementById('r-covers').value;
+
+        var url = 'https://www.dineplan.com/restaurants/nostos'
+                + '?date='   + encodeURIComponent(date)
+                + '&time='   + encodeURIComponent(time)
+                + '&covers=' + encodeURIComponent(covers);
+
+        window.open(url, '_blank', 'noopener,noreferrer');
+      });
+    })();
+  </script>
 </body>
 </html>
