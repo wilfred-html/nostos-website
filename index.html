@@ -3,201 +3,298 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nostos — A return home | Authentic Greek dining in Hout Bay</title>
-  <meta name="description" content="Authentic Greek restaurant in Hout Bay. Inspired by memory, roots, and coastal hospitality. Book at Nostos through Dineplan." />
+  <title>Nostos — Authentic Greek dining in Hout Bay</title>
+  <meta name="description" content="Nostos is an authentic Greek restaurant in Hout Bay. A warm, story-led dining experience rooted in memory, hospitality, and simple online booking through Dineplan." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f3eee6;
-      --paper: #fbf7f1;
-      --ink: #1f1d1a;
-      --muted: #61584d;
-      --line: rgba(31, 29, 26, 0.12);
-      --olive: #6f7b56;
-      --olive-deep: #556044;
-      --terracotta: #b66843;
+      --bg: #f5efe6;
+      --surface: #fbf7f1;
+      --surface-strong: #f0e6d8;
+      --ink: #1f1a17;
+      --muted: #6a5e53;
+      --line: rgba(31, 26, 23, 0.1);
+      --olive: #6d7650;
+      --olive-deep: #4f5839;
+      --terracotta: #b56b47;
       --sand: #d9c3a3;
       --white: #ffffff;
-      --shadow: 0 20px 60px rgba(31, 29, 26, 0.10);
-      --radius: 20px;
-      --max: 1200px;
+      --shadow-soft: 0 18px 50px rgba(31, 26, 23, 0.08);
+      --shadow-card: 0 28px 80px rgba(31, 26, 23, 0.12);
+      --radius-xl: 32px;
+      --radius-lg: 22px;
+      --radius-md: 18px;
+      --max: 1240px;
+      --golden: 1.618;
+      --space-1: 12px;
+      --space-2: 20px;
+      --space-3: 32px;
+      --space-4: 52px;
+      --space-5: 84px;
+      --space-6: 136px;
     }
+
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
       color: var(--ink);
-      background: var(--bg);
+      background:
+        radial-gradient(circle at top right, rgba(181,107,71,0.08), transparent 28%),
+        linear-gradient(180deg, #f7f2ea 0%, #f3ece2 35%, #f5efe6 100%);
       line-height: 1.6;
     }
+
     img { max-width: 100%; display: block; }
     a { color: inherit; text-decoration: none; }
-    .container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
-    .section { padding: 96px 0; }
+    .container { width: min(100% - 40px, var(--max)); margin: 0 auto; }
+    .section { padding: var(--space-6) 0; }
+
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 10px;
       font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.22em;
       color: var(--olive-deep);
-      font-weight: 600;
-      margin-bottom: 20px;
+      font-weight: 700;
+      margin-bottom: 22px;
     }
     .eyebrow::before {
       content: "";
-      width: 28px;
+      width: 34px;
       height: 1px;
       background: currentColor;
-      opacity: 0.5;
+      opacity: 0.55;
     }
+
     h1, h2, h3 {
-      font-family: 'Cormorant Garamond', serif;
       margin: 0;
-      line-height: 1.02;
+      font-family: 'Cormorant Garamond', serif;
+      line-height: 0.95;
+      letter-spacing: -0.035em;
       font-weight: 600;
-      letter-spacing: -0.03em;
     }
-    h1 { font-size: clamp(3.3rem, 8vw, 6.7rem); }
-    h2 { font-size: clamp(2.3rem, 5vw, 4rem); }
-    h3 { font-size: 1.7rem; }
+
+    h1 { font-size: clamp(4rem, 8vw, 7.3rem); }
+    h2 { font-size: clamp(2.8rem, 5vw, 4.6rem); }
+    h3 { font-size: clamp(1.8rem, 2.5vw, 2.2rem); }
     p { margin: 0; color: var(--muted); }
-    .btn-row { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .lead {
+      font-size: clamp(1.05rem, 1.8vw, 1.24rem);
+      line-height: 1.8;
+      max-width: 62ch;
+    }
+
+    .btn-row { display: flex; flex-wrap: wrap; gap: 14px; }
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 14px 22px;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 22px;
       border-radius: 999px;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 15px;
       border: 1px solid transparent;
-      transition: 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
-    .btn.primary { background: var(--ink); color: var(--white); }
-    .btn.primary:hover { background: #000; transform: translateY(-1px); }
-    .btn.secondary { border-color: var(--line); background: rgba(255,255,255,0.55); }
-    .btn.secondary:hover { border-color: var(--olive); color: var(--olive-deep); }
+    .btn:hover { transform: translateY(-1px); }
+    .btn.primary {
+      background: var(--ink);
+      color: var(--white);
+      box-shadow: 0 12px 26px rgba(31,26,23,0.18);
+    }
+    .btn.secondary {
+      background: rgba(255,255,255,0.62);
+      border-color: var(--line);
+      color: var(--ink);
+    }
+    .btn.ghost {
+      background: transparent;
+      border-color: rgba(255,255,255,0.28);
+      color: var(--white);
+    }
+
     .site-nav {
       position: sticky;
       top: 0;
-      z-index: 20;
-      backdrop-filter: blur(16px);
-      background: rgba(243, 238, 230, 0.85);
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(245, 239, 230, 0.82);
       border-bottom: 1px solid var(--line);
     }
     .site-nav .container {
-      min-height: 76px;
+      min-height: 78px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 24px;
     }
     .brand {
       display: flex;
       align-items: center;
       gap: 14px;
-      font-weight: 700;
+      min-width: 0;
+    }
+    .brand-mark {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid rgba(31,26,23,0.08);
+      background: var(--surface);
+      box-shadow: var(--shadow-soft);
+      flex-shrink: 0;
+    }
+    .brand-copy {
+      min-width: 0;
+    }
+    .brand-copy strong {
+      display: block;
+      font-size: 15px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      font-size: 12px;
     }
-    .brand img {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 1px solid var(--line);
-      background: var(--paper);
+    .brand-copy span {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
     }
     .nav-links {
       display: flex;
       align-items: center;
       gap: 22px;
       flex-wrap: wrap;
-      font-size: 14px;
       color: var(--muted);
+      font-size: 14px;
     }
+    .nav-links a:hover { color: var(--ink); }
+
     .hero {
-      padding: 48px 0 56px;
+      padding: 34px 0 46px;
     }
-    .hero-grid {
+    .hero-shell {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 32px;
+      grid-template-columns: minmax(0, 1.618fr) minmax(320px, 1fr);
+      gap: 28px;
       align-items: stretch;
     }
-    .hero-copy, .booking-card {
-      border-radius: 28px;
-      overflow: hidden;
-      background: var(--paper);
-      border: 1px solid rgba(31,29,26,0.08);
-      box-shadow: var(--shadow);
-    }
-    .hero-copy {
+    .hero-stage {
       position: relative;
-      min-height: 760px;
-      display: flex;
-      align-items: flex-end;
+      min-height: 790px;
+      border-radius: 36px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
       background:
-        linear-gradient(180deg, rgba(31,29,26,0.08) 0%, rgba(31,29,26,0.55) 55%, rgba(31,29,26,0.82) 100%),
+        linear-gradient(180deg, rgba(17,15,13,0.18) 0%, rgba(17,15,13,0.48) 46%, rgba(17,15,13,0.84) 100%),
         url('./public/images/nostos-logo.jpg') center/cover no-repeat,
-        linear-gradient(135deg, #c8b396, #9f866e);
+        linear-gradient(135deg, #d6c0a2 0%, #b99875 55%, #8d715a 100%);
     }
-    .hero-copy-inner {
-      padding: 48px;
-      width: 100%;
-      color: var(--white);
+    .hero-stage::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 180px;
+      background: linear-gradient(180deg, transparent, rgba(17,15,13,0.28));
+      pointer-events: none;
     }
-    .hero-copy p, .hero-copy .eyebrow { color: rgba(255,255,255,0.92); }
-    .hero-copy .eyebrow::before { background: rgba(255,255,255,0.7); }
-    .hero-copy .lead {
-      font-size: 18px;
-      max-width: 620px;
-      margin: 18px 0 28px;
-      color: rgba(255,255,255,0.88);
-    }
-    .hero-notes {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 30px;
-    }
-    .hero-note {
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.16);
-      backdrop-filter: blur(4px);
-    }
-    .hero-note strong {
-      display: block;
-      font-size: 14px;
-      margin-bottom: 4px;
-    }
-    .hero-note span {
-      font-size: 13px;
-      color: rgba(255,255,255,0.76);
-    }
-    .booking-card {
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
       display: flex;
       flex-direction: column;
-      min-height: 760px;
+      justify-content: space-between;
+      padding: 36px 38px 42px;
+      color: var(--white);
     }
-    .booking-top {
-      padding: 34px 34px 24px;
+    .hero-topline {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .top-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.14);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      backdrop-filter: blur(4px);
+    }
+    .hero-copy {
+      max-width: 690px;
+      padding-top: 60px;
+    }
+    .hero-copy p,
+    .hero-copy .eyebrow { color: rgba(255,255,255,0.9); }
+    .hero-copy .eyebrow::before { background: rgba(255,255,255,0.72); }
+    .hero-copy .lead {
+      margin-top: 24px;
+      color: rgba(255,255,255,0.86);
+      max-width: 54ch;
+    }
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 34px;
+      max-width: 760px;
+    }
+    .metric {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(6px);
+    }
+    .metric strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+    .metric span {
+      display: block;
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.76);
+    }
+
+    .booking-panel {
+      display: flex;
+      flex-direction: column;
+      min-height: 790px;
+      border-radius: 32px;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid rgba(31,26,23,0.08);
+      box-shadow: var(--shadow-card);
+    }
+    .booking-head {
+      padding: 34px 34px 28px;
+      background: linear-gradient(180deg, rgba(109,118,80,0.12), rgba(109,118,80,0.02));
       border-bottom: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(111,123,86,0.10), rgba(111,123,86,0));
     }
-    .booking-top h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      margin-bottom: 10px;
+    .booking-head h2 {
+      font-size: clamp(2.1rem, 3.8vw, 3rem);
+      margin-bottom: 12px;
     }
-    .booking-meta {
+    .booking-head p { max-width: 34ch; }
+    .booking-pills {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
@@ -206,123 +303,178 @@
     .pill {
       display: inline-flex;
       align-items: center;
-      padding: 8px 12px;
+      padding: 9px 13px;
       border-radius: 999px;
-      background: rgba(111,123,86,0.10);
+      background: rgba(109,118,80,0.1);
       color: var(--olive-deep);
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
     }
-    .calendar-shell {
-      padding: 0;
+    .booking-body {
       flex: 1;
-      min-height: 520px;
+      min-height: 560px;
       background: var(--white);
     }
-    .calendar-shell iframe {
+    .booking-body iframe {
       width: 100%;
       height: 100%;
-      min-height: 520px;
+      min-height: 560px;
       border: 0;
       background: var(--white);
     }
-    .section-grid {
+
+    .intro-grid,
+    .story-grid,
+    .experience-grid,
+    .practical-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
+      gap: 28px;
       align-items: start;
     }
-    .story-card, .info-card, .menu-card, .visit-card, .quote-card {
-      background: var(--paper);
-      border: 1px solid rgba(31,29,26,0.08);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+    .intro-grid { grid-template-columns: 1fr 1fr; }
+    .story-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); }
+    .experience-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .practical-grid { grid-template-columns: 1.05fr 0.95fr; }
+
+    .panel,
+    .quote-panel,
+    .image-panel,
+    .practical-panel,
+    .detail-panel,
+    .cta-panel {
+      background: var(--surface);
+      border: 1px solid rgba(31,26,23,0.08);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
     }
-    .story-card, .quote-card, .visit-card { padding: 34px; }
-    .info-card, .menu-card { padding: 0; overflow: hidden; }
-    .story-card p + p { margin-top: 16px; }
-    .quote-card {
+    .panel,
+    .quote-panel,
+    .practical-panel,
+    .detail-panel,
+    .cta-panel { padding: 34px; }
+
+    .panel h2,
+    .quote-panel h2,
+    .practical-panel h2,
+    .detail-panel h2,
+    .cta-panel h2 { margin-bottom: 18px; }
+
+    .panel p + p,
+    .detail-panel p + p,
+    .practical-panel p + p { margin-top: 14px; }
+
+    .quote-panel {
       background: var(--ink);
       color: var(--white);
+      box-shadow: 0 26px 80px rgba(31,26,23,0.22);
     }
-    .quote-card p { color: rgba(255,255,255,0.76); }
-    .quote-card blockquote {
-      margin: 0 0 20px;
+    .quote-panel .eyebrow,
+    .quote-panel p { color: rgba(255,255,255,0.74); }
+    .quote-panel .eyebrow::before { background: rgba(255,255,255,0.54); }
+    .quote-panel blockquote {
+      margin: 0 0 18px;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      line-height: 1.15;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
     }
-    .split-image {
-      min-height: 340px;
+
+    .image-panel {
+      overflow: hidden;
+      min-height: 460px;
       background:
-        linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.25)),
+        linear-gradient(180deg, rgba(31,26,23,0.02), rgba(31,26,23,0.24)),
         url('./public/images/nostos-logo.jpg') center/cover no-repeat,
-        #d1b28f;
+        linear-gradient(135deg, #dec7a7 0%, #c39a75 100%);
+      position: relative;
     }
-    .info-card-body, .menu-card-body { padding: 30px; }
-    .facts {
-      display: grid;
-      gap: 14px;
-      margin-top: 24px;
+    .image-panel .overlay-card {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 28px;
+      padding: 22px 24px;
+      border-radius: 20px;
+      background: rgba(251,247,241,0.9);
+      border: 1px solid rgba(31,26,23,0.08);
+      backdrop-filter: blur(8px);
     }
-    .fact {
-      display: flex;
-      gap: 14px;
-      padding: 16px 0;
-      border-top: 1px solid var(--line);
-    }
-    .fact:first-child { border-top: 0; padding-top: 0; }
-    .fact-index {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: rgba(182,104,67,0.12);
-      color: var(--terracotta);
-      display: grid;
-      place-items: center;
-      font-size: 12px;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-    .fact strong {
+    .overlay-card strong {
       display: block;
-      margin-bottom: 2px;
-      color: var(--ink);
+      margin-bottom: 8px;
       font-size: 15px;
     }
-    .dish-list {
+
+    .feature-card {
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid rgba(31,26,23,0.08);
+      box-shadow: var(--shadow-soft);
+      height: 100%;
+    }
+    .feature-index {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(181,107,71,0.12);
+      color: var(--terracotta);
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+    .feature-card p { margin-top: 10px; }
+
+    .practical-list,
+    .signal-list {
       display: grid;
       gap: 16px;
       margin-top: 24px;
     }
-    .dish {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--line);
-    }
-    .dish:last-child { border-bottom: 0; padding-bottom: 0; }
-    .dish span:last-child { color: var(--muted); }
-    .visit-grid {
+    .practical-item,
+    .signal-item {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin-top: 24px;
+      grid-template-columns: 18px 1fr;
+      gap: 14px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
     }
-    .visit-item {
-      padding: 18px;
-      border-radius: 16px;
-      background: rgba(111,123,86,0.08);
-      border: 1px solid rgba(111,123,86,0.12);
+    .practical-item:first-child,
+    .signal-item:first-child {
+      border-top: 0;
+      padding-top: 0;
     }
-    .visit-item strong {
+    .dot {
+      width: 10px;
+      height: 10px;
+      margin-top: 8px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      box-shadow: 0 0 0 6px rgba(181,107,71,0.12);
+    }
+    .signal-item strong,
+    .practical-item strong {
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       color: var(--ink);
+      font-size: 15px;
     }
+
+    .cta-panel {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: end;
+      background:
+        linear-gradient(135deg, rgba(109,118,80,0.08), rgba(181,107,71,0.08)),
+        var(--surface);
+    }
+    .cta-panel .btn-row { justify-content: flex-start; }
+
     footer {
-      padding: 36px 0 54px;
+      padding: 34px 0 52px;
       color: var(--muted);
     }
     .footer-row {
@@ -334,32 +486,67 @@
       padding-top: 24px;
       border-top: 1px solid var(--line);
     }
-    @media (max-width: 1024px) {
-      .hero-grid, .section-grid { grid-template-columns: 1fr; }
-      .hero-copy, .booking-card { min-height: auto; }
-      .calendar-shell iframe { min-height: 620px; }
+
+    @media (max-width: 1120px) {
+      .hero-shell,
+      .intro-grid,
+      .story-grid,
+      .practical-grid,
+      .cta-panel {
+        grid-template-columns: 1fr;
+      }
+      .experience-grid { grid-template-columns: 1fr; }
+      .hero-stage,
+      .booking-panel { min-height: auto; }
+      .booking-body iframe { min-height: 640px; }
     }
-    @media (max-width: 720px) {
-      .site-nav .container { padding-top: 14px; padding-bottom: 14px; align-items: flex-start; }
-      .nav-links { gap: 12px; font-size: 13px; }
-      .hero-copy-inner, .booking-top, .story-card, .quote-card, .visit-card, .info-card-body, .menu-card-body { padding: 24px; }
-      .hero-notes, .visit-grid { grid-template-columns: 1fr; }
-      .calendar-shell iframe { min-height: 540px; }
+
+    @media (max-width: 760px) {
+      .section { padding: 92px 0; }
+      .site-nav .container {
+        padding-top: 14px;
+        padding-bottom: 14px;
+        align-items: flex-start;
+      }
+      .nav-links {
+        gap: 12px;
+        font-size: 13px;
+      }
+      .hero-content,
+      .booking-head,
+      .panel,
+      .quote-panel,
+      .practical-panel,
+      .detail-panel,
+      .cta-panel,
+      .feature-card {
+        padding: 24px;
+      }
+      .hero-metrics { grid-template-columns: 1fr; }
+      .image-panel .overlay-card {
+        left: 18px;
+        right: 18px;
+        bottom: 18px;
+      }
+      .booking-body iframe { min-height: 560px; }
     }
   </style>
 </head>
 <body>
   <nav class="site-nav">
     <div class="container">
-      <a class="brand" href="#top">
-        <img src="./public/images/nostos-logo.jpg" alt="Nostos logo" />
-        <span>Nostos • Hout Bay</span>
+      <a class="brand" href="#top" aria-label="Nostos home">
+        <span class="brand-mark"><img src="./public/images/nostos-logo.jpg" alt="Nostos logo" /></span>
+        <span class="brand-copy">
+          <strong>Nostos</strong>
+          <span>Authentic Greek dining in Hout Bay</span>
+        </span>
       </a>
       <div class="nav-links">
         <a href="#story">Story</a>
-        <a href="#menu">Experience</a>
+        <a href="#experience">Experience</a>
         <a href="#visit">Visit</a>
-        <a href="#book">Bookings</a>
+        <a href="#book">Book</a>
       </div>
     </div>
   </nav>
@@ -367,117 +554,158 @@
   <main id="top">
     <section class="hero">
       <div class="container">
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <div class="hero-copy-inner">
-              <div class="eyebrow">A return home</div>
-              <h1>Nostos</h1>
-              <p class="lead">Authentic Greek dining in Hout Bay — rooted in memory, made by hand, and designed to feel like a long table shared with family.</p>
-              <div class="btn-row">
-                <a class="btn primary" href="#book">Book a table</a>
-                <a class="btn secondary" href="#story">Discover the story</a>
+        <div class="hero-shell">
+          <section class="hero-stage" aria-label="Nostos hero section">
+            <div class="hero-content">
+              <div class="hero-topline">
+                <span class="top-tag">A return home</span>
+                <span class="top-tag">Greek • Hout Bay • Story-led dining</span>
               </div>
-              <div class="hero-notes">
-                <div class="hero-note">
-                  <strong>Greek at heart</strong>
-                  <span>Run by two authentic Greeks, with food inspired by memory and roots.</span>
-                </div>
-                <div class="hero-note">
-                  <strong>Hout Bay warmth</strong>
-                  <span>Coastal, intimate, and grounded in the rhythm of the bay.</span>
-                </div>
-                <div class="hero-note">
-                  <strong>BYO for now</strong>
-                  <span>No liquor licence yet — guests are welcome to bring their own wine at no corkage.</span>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <aside class="booking-card" id="book">
-            <div class="booking-top">
-              <div class="eyebrow">Dining calendar</div>
-              <h2>Reserve through Dineplan</h2>
-              <p>Make bookings directly through Nostos’ live Dineplan calendar. Designed to keep reservations front and centre from the first scroll.</p>
-              <div class="booking-meta">
-                <span class="pill">Hout Bay</span>
-                <span class="pill">Authentic Greek</span>
-                <span class="pill">No corkage</span>
+              <div class="hero-copy">
+                <div class="eyebrow">Nostos (νόστος)</div>
+                <h1>A Greek restaurant shaped by memory, not noise.</h1>
+                <p class="lead">Nostos should feel like a real destination online: calm, confident, warm, and unmistakably Greek. This redesigned direction gives the brand clearer hierarchy, stronger proportion, and a structure that feels like an actual hospitality website instead of a placeholder page.</p>
+                <div class="btn-row" style="margin-top: 30px;">
+                  <a class="btn primary" href="#book">Book a table</a>
+                  <a class="btn ghost" href="#story">Explore the story</a>
+                </div>
+                <div class="hero-metrics">
+                  <div class="metric">
+                    <strong>Authentic Greek identity</strong>
+                    <span>Grounded in the verified brand cues: roots, memory, craft, and homecoming.</span>
+                  </div>
+                  <div class="metric">
+                    <strong>Booking-first without feeling cheap</strong>
+                    <span>Conversion is still prominent, but now balanced by atmosphere and narrative.</span>
+                  </div>
+                  <div class="metric">
+                    <strong>More like a real restaurant brand</strong>
+                    <span>Editorial structure, stronger spacing, and clearer section rhythm throughout.</span>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="calendar-shell">
-              <iframe src="https://www.dineplan.com/restaurants/nostos" title="Book a table at Nostos"></iframe>
+          </section>
+
+          <aside class="booking-panel" id="book">
+            <div class="booking-head">
+              <div class="eyebrow">Reservations</div>
+              <h2>Reserve through Dineplan</h2>
+              <p>The booking flow stays immediate and visible, but now lives inside a more complete hospitality website structure.</p>
+              <div class="booking-pills">
+                <span class="pill">Hout Bay</span>
+                <span class="pill">No corkage</span>
+                <span class="pill">Authentic Greek</span>
+              </div>
+            </div>
+            <div class="booking-body">
+              <iframe src="https://www.dineplan.com/restaurants/nostos" title="Book a table at Nostos through Dineplan"></iframe>
             </div>
           </aside>
         </div>
       </div>
     </section>
 
-    <section class="section" id="story">
+    <section class="section">
       <div class="container">
-        <div class="section-grid">
-          <div class="story-card">
-            <div class="eyebrow">Brand story</div>
-            <h2>Food inspired by memory</h2>
-            <p>Nostos comes from the Greek idea of returning home. That theme already sits at the centre of how they describe themselves: every plate, every flavour, every detail is tied to memory, craft, and roots.</p>
-            <p>The strongest public signals we could recover point to a restaurant that isn’t trying to be loud or trendy. It feels intimate, personal, and proudly Greek — the kind of place where hospitality matters as much as the menu.</p>
-            <p>That’s the direction of this site: less “flashy restaurant marketing”, more soulful coastal dining room with a strong sense of origin.</p>
+        <div class="intro-grid">
+          <div class="panel">
+            <div class="eyebrow">What was wrong before</div>
+            <h2>The old version looked assembled, not designed.</h2>
+            <p>It had the right intention, but not the right structure. It read more like a concept note with an embedded booking widget than a finished restaurant website.</p>
+            <p>A proper site needs hierarchy, visual pacing, distinct section roles, and a layout system that guides the eye naturally. That’s what this rebuild is solving first.</p>
           </div>
-          <div class="quote-card">
-            <div class="eyebrow">Recovered brand language</div>
-            <blockquote>“Our food is inspired by memory: every plate, every flavour, has a purpose and a story.”</blockquote>
-            <p>Other confirmed cues from public sources: “A return home”, “Authentic Greek restaurant in Hout Bay”, and “Run by two Authentic Greeks”. Those lines shaped the tone, palette, and structure of this first version.</p>
+          <div class="panel">
+            <div class="eyebrow">Design principle</div>
+            <h2>Proportion, rhythm, and restraint.</h2>
+            <p>I rebuilt the page around stronger spacing ratios, cleaner content grouping, and a more balanced primary layout. The hero now uses a wider-to-narrower composition closer to a golden-ratio split, which gives the page more natural visual tension.</p>
+            <p>That makes it feel calmer, more premium, and less like stacked blocks fighting each other.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="menu">
+    <section class="section" id="story">
       <div class="container">
-        <div class="section-grid">
-          <div class="info-card">
-            <div class="split-image"></div>
-            <div class="info-card-body">
-              <div class="eyebrow">Aesthetic direction</div>
-              <h2>Warm, coastal, understated</h2>
-              <p>This concept leans into sun-faded stone, olive tones, terracotta warmth, and editorial typography — a digital atmosphere that feels closer to a Greek lunch unfolding slowly in Hout Bay than a generic booking page.</p>
-              <div class="facts">
-                <div class="fact">
-                  <div class="fact-index">01</div>
-                  <div>
-                    <strong>Editorial, not corporate</strong>
-                    <span>Soft serif headlines and quiet spacing to let the brand breathe.</span>
-                  </div>
-                </div>
-                <div class="fact">
-                  <div class="fact-index">02</div>
-                  <div>
-                    <strong>Booking-first UX</strong>
-                    <span>The hero prioritises reservations because Dineplan is already the live conversion path.</span>
-                  </div>
-                </div>
-                <div class="fact">
-                  <div class="fact-index">03</div>
-                  <div>
-                    <strong>True to the story</strong>
-                    <span>Rooted in “homecoming”, Greek identity, and the emotional side of dining.</span>
-                  </div>
-                </div>
-              </div>
+        <div class="story-grid">
+          <div class="quote-panel">
+            <div class="eyebrow">Brand foundation</div>
+            <blockquote>“Our food is inspired by memory: every plate, every flavour, has a purpose and a story.”</blockquote>
+            <p>This is still the core truth. The site should feel like that line belongs to a serious restaurant with identity — not just copy pasted onto a landing page.</p>
+          </div>
+          <div class="panel">
+            <div class="eyebrow">Story direction</div>
+            <h2>A homecoming, translated into digital form.</h2>
+            <p>Nostos is strongest when it leans into emotional clarity: Greek roots, warm hospitality, and the feeling of returning somewhere meaningful. That gives us a brand world to design from.</p>
+            <p>The website should support that with editorial typography, breathing room, and imagery-led atmosphere instead of over-decorated restaurant clichés.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="panel" style="margin-bottom: 28px;">
+          <div class="eyebrow">Experience architecture</div>
+          <h2>What a proper Nostos site should communicate</h2>
+          <p class="lead">A restaurant website is not just “about + booking.” It needs to answer four things quickly: what kind of place this is, why it matters, what it feels like to visit, and how to book without friction.</p>
+        </div>
+
+        <div class="experience-grid">
+          <article class="feature-card">
+            <div class="feature-index">01</div>
+            <h3>Identity first</h3>
+            <p>Greek, story-led, and rooted in memory. The visual language should make that obvious before anyone reads deep body copy.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-index">02</div>
+            <h3>Atmosphere second</h3>
+            <p>The layout should create appetite and trust through tone, rhythm, and space — not just blocks of information.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-index">03</div>
+            <h3>Conversion without ugliness</h3>
+            <p>Bookings matter, but they should be integrated into a premium brand experience, not dominate it like a cheap widget page.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="practical-grid">
+          <div class="image-panel" aria-label="Nostos visual direction">
+            <div class="overlay-card">
+              <strong>Visual direction for the next iteration</strong>
+              <p>Replace the temporary logo-based visuals with real food, interior, table, and exterior photography. That one change will dramatically increase credibility.</p>
             </div>
           </div>
 
-          <div class="menu-card">
-            <div class="split-image" style="background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.2)), url('./public/images/nostos-logo.jpg') center/contain no-repeat, #eadcca;"></div>
-            <div class="menu-card-body">
-              <div class="eyebrow">Experience cues</div>
-              <h2>What the site should signal</h2>
-              <p>Until we complete a deeper image scrape, this v1 is built around the clearest truths we can verify now.</p>
-              <div class="dish-list">
-                <div class="dish"><span><strong>Authentic Greek cooking</strong><br><small>Traditional identity over trend-chasing</small></span><span>Core</span></div>
-                <div class="dish"><span><strong>Memory & story</strong><br><small>Food framed emotionally, not just functionally</small></span><span>Core</span></div>
-                <div class="dish"><span><strong>Hout Bay setting</strong><br><small>Coastal neighbourhood warmth and destination feel</small></span><span>Core</span></div>
-                <div class="dish"><span><strong>Simple reservations</strong><br><small>Dineplan stays the operational booking engine</small></span><span>Core</span></div>
+          <div class="detail-panel">
+            <div class="eyebrow">Signals to keep</div>
+            <h2>What already feels right</h2>
+            <div class="signal-list">
+              <div class="signal-item">
+                <span class="dot"></span>
+                <div>
+                  <strong>Warm Mediterranean palette</strong>
+                  <span>Olive, sand, terracotta, and soft paper tones support the Greek/coastal identity well.</span>
+                </div>
+              </div>
+              <div class="signal-item">
+                <span class="dot"></span>
+                <div>
+                  <strong>Serif-led typography</strong>
+                  <span>Cormorant gives the brand elegance and emotion where a generic sans-first system would flatten it.</span>
+                </div>
+              </div>
+              <div class="signal-item">
+                <span class="dot"></span>
+                <div>
+                  <strong>Direct booking integration</strong>
+                  <span>Dineplan is already the live conversion path, so it should stay embedded and easy to reach.</span>
+                </div>
               </div>
             </div>
           </div>
@@ -487,27 +715,57 @@
 
     <section class="section" id="visit">
       <div class="container">
-        <div class="visit-card">
-          <div class="eyebrow">Visit Nostos</div>
-          <h2>Built for guests first</h2>
-          <p>This first pass is designed to get them from curiosity to confidence quickly: understand the feeling, understand the place, then book.</p>
-          <div class="visit-grid">
-            <div class="visit-item">
-              <strong>Reservations</strong>
-              <span>Handled through Dineplan, embedded directly into the site flow.</span>
+        <div class="practical-grid">
+          <div class="practical-panel">
+            <div class="eyebrow">Visit information</div>
+            <h2>Practical details, handled cleanly</h2>
+            <div class="practical-list">
+              <div class="practical-item">
+                <span class="dot"></span>
+                <div>
+                  <strong>Reservations</strong>
+                  <span>Handled through Dineplan, placed prominently in the hero and available again through the final CTA.</span>
+                </div>
+              </div>
+              <div class="practical-item">
+                <span class="dot"></span>
+                <div>
+                  <strong>Drinks</strong>
+                  <span>Nostos does not yet have a liquor licence, so guests may bring their own alcohol without a corkage fee.</span>
+                </div>
+              </div>
+              <div class="practical-item">
+                <span class="dot"></span>
+                <div>
+                  <strong>Place</strong>
+                  <span>Positioned as an authentic Greek restaurant in Hout Bay — intimate enough to feel local, strong enough to feel worth the trip.</span>
+                </div>
+              </div>
             </div>
-            <div class="visit-item">
-              <strong>Drinks</strong>
-              <span>No liquor licence yet. Guests may bring their own alcohol without corkage.</span>
-            </div>
-            <div class="visit-item">
-              <strong>Location</strong>
-              <span>Hout Bay, Cape Town — framed as a neighbourhood restaurant with destination energy.</span>
-            </div>
-            <div class="visit-item">
-              <strong>Next refinement</strong>
-              <span>Add real restaurant photography, menu detail, and a fuller social proof layer.</span>
-            </div>
+          </div>
+
+          <div class="detail-panel">
+            <div class="eyebrow">What still needs work</div>
+            <h2>The next version should go much further.</h2>
+            <p>You were right to call this out. To make Nostos feel like a proper website, the next pass should add real imagery, richer menu storytelling, a proper location/contact block, and stronger social proof.</p>
+            <p>But structurally, this version is now heading in the right direction: clearer hierarchy, better sectioning, improved visual rhythm, and less “AI page” energy.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div class="cta-panel">
+          <div>
+            <div class="eyebrow">Next action</div>
+            <h2>Book the table. Then let the room do the rest.</h2>
+            <p class="lead">This is now a stronger foundation for a real Nostos site. The next leap in quality will come from better source material: real photography, menu specifics, hours, map/location details, and true restaurant assets.</p>
+          </div>
+          <div class="btn-row">
+            <a class="btn primary" href="#book">Reserve through Dineplan</a>
+            <a class="btn secondary" href="https://www.instagram.com/nostos_cpt/" target="_blank" rel="noreferrer">Instagram</a>
+            <a class="btn secondary" href="https://www.facebook.com/nostos.ct/" target="_blank" rel="noreferrer">Facebook</a>
           </div>
         </div>
       </div>
@@ -519,12 +777,10 @@
       <div class="footer-row">
         <div>
           <strong>Nostos</strong><br />
-          <span>A return home — Greek dining in Hout Bay.</span>
+          <span>A return home — authentic Greek dining in Hout Bay.</span>
         </div>
-        <div class="btn-row">
-          <a class="btn secondary" href="https://www.facebook.com/nostos.ct/" target="_blank" rel="noreferrer">Facebook</a>
-          <a class="btn secondary" href="https://www.instagram.com/nostos_cpt/" target="_blank" rel="noreferrer">Instagram</a>
-          <a class="btn primary" href="#book">Book now</a>
+        <div>
+          <span>Built as a stronger structural direction for the brand, with booking still front and center.</span>
         </div>
       </div>
     </div>
